@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # ─────────────────────────────────────────────────────────
-# Miracle Paints — Unified Deployment Helper
-# Builds the Color Studio React app and places its output
-# inside the Miracle Paints marketing site folder so both
+# RioPoly — Unified Deployment Helper
+# Builds the 3D Studio React app and places its output
+# inside the RioPoly marketing site folder so both
 # can be deployed together from a single directory.
 # ─────────────────────────────────────────────────────────
 set -e
@@ -56,12 +56,12 @@ echo "  Using npm: $NPM  ($("$NPM" --version))"
 
 echo ""
 echo "────────────────────────────────────────"
-echo "  Miracle Paints · Build & Assemble"
+echo "  RioPoly · Build & Assemble"
 echo "────────────────────────────────────────"
 
 # 1. Build the React Color Studio app
 echo ""
-echo "► Building Color Decision Studio…"
+echo "► Building RioPoly 3D Studio…"
 cd "$STUDIO_DIR"
 NODE_ENV=production "$NPM" run build
 
@@ -78,6 +78,6 @@ echo "  Deployment folder:  $SCRIPT_DIR"
 echo "  Marketing site:     /  (index.html, styles.css, etc.)"
 echo "  Color Studio:       /color-studio/"
 echo ""
-echo "  Deploy the folder above to Netlify / Vercel / any static host."
-echo "  See netlify.toml for routing configuration."
+echo "  Deploy the folder above to Vercel / any static host."
+echo "  See vercel.json for routing configuration."
 echo "────────────────────────────────────────"

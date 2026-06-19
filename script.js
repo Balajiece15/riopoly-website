@@ -163,7 +163,7 @@ audienceTabs.forEach(tab => {
         });
 
         // Analytics
-        mpTrack('products_tab_click', { tab: target });
+        rpTrack('products_tab_click', { tab: target });
     });
 });
 
@@ -220,7 +220,7 @@ if (contactForm) {
                 if (!res.ok || !data.ok) throw new Error(data.error || 'server');
                 showFormFeedback('success');
                 contactForm.reset();
-                mpTrack('form_submit', { type, service: service || 'none' });
+                rpTrack('form_submit', { type, service: service || 'none' });
             });
         })
         .catch(function () {
@@ -241,7 +241,7 @@ function showFormFeedback(state, msg) {
         formFeedback.innerHTML =
             '<strong style="display:block;margin-bottom:4px">✓ Enquiry received — thank you!</strong>' +
             'We will contact you within 24 hours on business days. ' +
-            'For a faster reply, <a href="https://wa.me/919876543210?text=Hi%2C%20I%20just%20submitted%20an%20enquiry%20on%20Miracle%20Paints." ' +
+            'For a faster reply, <a href="https://wa.me/919876543210?text=Hi%2C%20I%20just%20submitted%20an%20enquiry%20on%20RioPoly." ' +
             'target="_blank" style="text-decoration:underline;font-weight:600">WhatsApp us directly</a>.';
         setTimeout(() => formFeedback.classList.add('hidden'), 10000);
     } else {
@@ -259,16 +259,16 @@ function showFormFeedback(state, msg) {
 document.querySelectorAll('[data-track]').forEach(el => {
     el.addEventListener('click', function () {
         const event = this.dataset.track;
-        mpTrack('cta_click', { element: event });
+        rpTrack('cta_click', { element: event });
     });
 });
 
 // ──────────────────────────────────────────
-// ANALYTICS — mpTrack (Miracle Paints Track)
+// ANALYTICS — rpTrack (RioPoly Track)
 // Lightweight event system.  Swap out the
 // body for Google Analytics / PostHog etc.
 // ──────────────────────────────────────────
-function mpTrack(eventName, props = {}) {
+function rpTrack(eventName, props = {}) {
     // ── Posthog / Mixpanel (uncomment when configured) ──
     // if (typeof posthog !== 'undefined') posthog.capture(eventName, props);
 
@@ -278,19 +278,19 @@ function mpTrack(eventName, props = {}) {
 
 // Page-view event on load
 window.addEventListener('load', function () {
-    mpTrack('page_view', { title: document.title });
+    rpTrack('page_view', { title: document.title });
 });
 
 // Color Studio link click tracking
 document.querySelectorAll('a[href*="color-studio"]').forEach(el => {
-    el.addEventListener('click', () => mpTrack('color_studio_cta_click', { source: 'marketing_site' }));
+    el.addEventListener('click', () => rpTrack('color_studio_cta_click', { source: 'marketing_site' }));
 });
 
 // Section scroll tracking via IntersectionObserver
 const sectionObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            mpTrack('section_view', { section: entry.target.id });
+            rpTrack('section_view', { section: entry.target.id });
         }
     });
 }, { threshold: 0.3 });
@@ -375,7 +375,7 @@ function debounce(fn, wait) {
 // ──────────────────────────────────────────
 // CONSOLE BRANDING
 // ──────────────────────────────────────────
-console.log('%c🛡 Miracle Paints', 'font-size:18px;font-weight:700;color:#3b82f6;');
-console.log('%cHome Protection. Painting is Incidental.', 'font-size:12px;color:#8b5cf6;');
+console.log('%c◆ RioPoly', 'font-size:18px;font-weight:700;color:#6366f1;');
+console.log('%cVisualize. Propose. Close.', 'font-size:12px;color:#38bdf8;');
 console.log('%c──────────────────────────────', 'color:#374151;');
 console.log('%c Site Ready ✓  |  AOS ✓  |  GSAP ✓  |  Analytics ✓', 'color:#10b981;font-size:11px;');
