@@ -224,7 +224,7 @@ if (contactForm) {
             });
         })
         .catch(function () {
-            showFormFeedback('error', 'Something went wrong. Please <a href="https://wa.me/919876543210" target="_blank" style="text-decoration:underline">WhatsApp us</a> or email directly.');
+            showFormFeedback('error', 'Something went wrong. Please <a href="https://wa.me/919944480052" target="_blank" style="text-decoration:underline">WhatsApp us</a> or email directly.');
         })
         .finally(function () {
             submitBtn.disabled = false;
@@ -241,7 +241,7 @@ function showFormFeedback(state, msg) {
         formFeedback.innerHTML =
             '<strong style="display:block;margin-bottom:4px">✓ Enquiry received — thank you!</strong>' +
             'We will contact you within 24 hours on business days. ' +
-            'For a faster reply, <a href="https://wa.me/919876543210?text=Hi%2C%20I%20just%20submitted%20an%20enquiry%20on%20RioPoly." ' +
+            'For a faster reply, <a href="https://wa.me/919944480052?text=Hi%2C%20I%20just%20submitted%20an%20enquiry%20on%20RioPoly." ' +
             'target="_blank" style="text-decoration:underline;font-weight:600">WhatsApp us directly</a>.';
         setTimeout(() => formFeedback.classList.add('hidden'), 10000);
     } else {
