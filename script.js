@@ -338,7 +338,7 @@ const statsObserver = new IntersectionObserver((entries) => {
             const counters = [
                 { selector: '.stat-25',  target: 25,  suffix: '+'  },
                 { selector: '.stat-500', target: 500, suffix: '+'  },
-                { selector: '.stat-10',  target: 10,  suffix: 'M+' },
+                { selector: '.stat-10',  target: 10,  suffix: '×'  },
                 { selector: '.stat-100', target: 100, suffix: '%'  },
             ];
             counters.forEach(({ selector, target, suffix }) => {
