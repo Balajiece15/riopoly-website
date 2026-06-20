@@ -228,7 +228,7 @@ if (contactForm) {
         })
         .finally(function () {
             submitBtn.disabled = false;
-            submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Enquiry';
+            submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Request Demo';
         });
     });
 }
@@ -239,9 +239,9 @@ function showFormFeedback(state, msg) {
     if (state === 'success') {
         formFeedback.className = 'success';
         formFeedback.innerHTML =
-            '<strong style="display:block;margin-bottom:4px">✓ Enquiry received — thank you!</strong>' +
+            '<strong style="display:block;margin-bottom:4px">✓ Request received — thank you!</strong>' +
             'We will contact you within 24 hours on business days. ' +
-            'For a faster reply, <a href="https://wa.me/919944480052?text=Hi%2C%20I%20just%20submitted%20an%20enquiry%20on%20RioPoly." ' +
+            'For a faster reply, <a href="https://wa.me/919944480052?text=Hi%2C%20I%20just%20requested%20a%20demo%20on%20RioPoly." ' +
             'target="_blank" style="text-decoration:underline;font-weight:600">WhatsApp us directly</a>.';
         setTimeout(() => formFeedback.classList.add('hidden'), 10000);
     } else {
