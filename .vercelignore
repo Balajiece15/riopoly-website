@@ -1,0 +1,11 @@
+.env
+.env.*
+!.env.example
+tests/
+test-results/
+playwright-report/
+blob-report/
+.next/
+node_modules/
+*.log
+CREDENTIALS*.md

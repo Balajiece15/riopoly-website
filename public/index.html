@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="RioPoly – Premium 3D Visualization & Proposal Software for Interior Professionals. Help designers, contractors, and agencies visualize colours in 3D and close deals faster with branded proposals.">
+    <meta name="keywords" content="riopoly, 3d visualization software, interior design software, paint visualizer, proposal software, color studio, design agency tools, contractor software, b2b saas">
+    <meta name="author" content="RioPoly">
+    <meta name="theme-color" content="#0a0e27">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/riopoly-mark.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/riopoly-mark.svg">
+
+    <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
+    <meta property="og:type"        content="website">
+    <meta property="og:site_name"   content="RioPoly">
+    <meta property="og:title"       content="RioPoly – Premium 3D Visualization & Proposal Software for Interior Professionals">
+    <meta property="og:description" content="Visualize colours in a 3D space and generate branded proposals in minutes. The deal-closing toolkit for designers, contractors, and agencies.">
+    <meta property="og:url"         content="https://riopoly.gotoanalyze.com/">
+    <meta property="og:image"       content="https://riopoly.gotoanalyze.com/assets/social-preview.jpg">
+    <meta property="og:image:width"  content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt"    content="RioPoly – Premium 3D Visualization & Proposal Software">
+
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:title"       content="RioPoly – Premium 3D Visualization & Proposal Software">
+    <meta name="twitter:description" content="Visualize colours in a 3D space and generate branded proposals in minutes. The deal-closing toolkit for interior professionals.">
+    <meta name="twitter:image"       content="https://riopoly.gotoanalyze.com/assets/social-preview.jpg">
+
+    <title>RioPoly – Premium 3D Visualization & Proposal Software for Interior Professionals</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'navy': {
+                            950: '#070a18',
+                            900: '#0a0e27',
+                            800: '#0f1420',
+                            700: '#141b2d',
+                            600: '#1e2a4a',
+                        }
+                    },
+                    animation: {
+                        'float': 'floatY 6s ease-in-out infinite',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="min-h-screen text-white antialiased">
+
+    <!-- ─────────────────────────────────────────────────
+         NAVIGATION
+    ───────────────────────────────────────────────── -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg bg-white/5 border-b border-white/10 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="#home" class="flex items-center space-x-3 group">
+                        <img src="assets/riopoly-mark.svg" alt="RioPoly logo" class="w-10 h-10 rounded-lg transform group-hover:scale-110 transition-transform duration-300" />
+                        <div>
+                            <span class="block text-xl font-bold font-poppins bg-gradient-to-r from-indigo-400 to-sky-400 bg-clip-text text-transparent leading-tight">
+                                RioPoly
+                            </span>
+                            <span class="block text-xs text-gray-400 font-inter tracking-wider">3D PROPOSAL SUITE</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Desktop Nav -->
+                <div class="hidden lg:flex items-center space-x-6">
+                    <a href="#home" class="nav-link">Home</a>
+                    <a href="#products" class="nav-link">Platform</a>
+                    <a href="#about" class="nav-link">About Us</a>
+                    <a href="#gallery" class="nav-link">Use Cases</a>
+                    <a href="/color-studio" class="nav-link flex items-center gap-1">
+                        <i class="fas fa-cube text-purple-400 text-xs"></i>
+                        3D Studio
+                    </a>
+                    <a href="/pricing" class="nav-link">Pricing</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                    <a href="/login" class="nav-link">Sign In</a>
+                    <a href="#contact" class="px-5 py-2.5 bg-gradient-to-r from-indigo-600 to-sky-500 hover:from-indigo-700 hover:to-sky-600 rounded-full font-semibold text-sm transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                        Request Demo
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="lg:hidden">
+                    <button id="mobile-menu-button" class="text-gray-300 hover:text-white focus:outline-none transition-colors duration-300">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden backdrop-blur-xl bg-navy-900/98 border-t border-white/10">
+            <div class="px-4 pt-4 pb-6 space-y-2">
+                <a href="#home" class="mobile-nav-link"><i class="fas fa-home mr-3 text-blue-400"></i>Home</a>
+                <a href="#products" class="mobile-nav-link"><i class="fas fa-box mr-3 text-purple-400"></i>Platform</a>
+                <a href="#about" class="mobile-nav-link"><i class="fas fa-info-circle mr-3 text-blue-400"></i>About Us</a>
+                <a href="#gallery" class="mobile-nav-link"><i class="fas fa-images mr-3 text-purple-400"></i>Use Cases</a>
+                <a href="/color-studio" class="mobile-nav-link"><i class="fas fa-cube mr-3 text-purple-400"></i>3D Studio</a>
+                <a href="/pricing" class="mobile-nav-link"><i class="fas fa-tag mr-3 text-emerald-400"></i>Pricing</a>
+                <a href="#contact" class="mobile-nav-link"><i class="fas fa-envelope mr-3 text-blue-400"></i>Contact</a>
+                <a href="/login" class="mobile-nav-link"><i class="fas fa-right-to-bracket mr-3 text-sky-400"></i>Sign In</a>
+                <a href="#contact" class="block px-4 py-3 bg-gradient-to-r from-indigo-600 to-sky-500 rounded-lg font-semibold text-center mt-2">
+                    <i class="fas fa-paper-plane mr-2"></i>Request Demo
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-20">
+
+        <!-- ─────────────────────────────────────────────────
+             HERO
+        ───────────────────────────────────────────────── -->
+        <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+
+            <!-- Animated orbs -->
+            <div class="absolute inset-0 z-0 pointer-events-none">
+                <div id="orb-1" class="floating-orb orb-blue"></div>
+                <div id="orb-2" class="floating-orb orb-purple"></div>
+                <div id="orb-3" class="floating-orb orb-pink"></div>
+            </div>
+
+            <!-- Hero Content -->
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-24">
+
+                <!-- Badge -->
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-300 text-xs font-semibold tracking-widest uppercase mb-8"
+                     data-aos="fade-down" data-aos-duration="800">
+                    <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                    Premium 3D Visualization &amp; Proposal Suite
+                </div>
+
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold font-poppins mb-6 leading-tight"
+                    data-aos="fade-up" data-aos-duration="1000">
+                    <span class="block gradient-text glow-text">Visualize. Propose.</span>
+                    <span class="block text-white">Close.</span>
+                </h1>
+
+                <p class="text-xl md:text-2xl text-gray-300 mb-6 max-w-3xl mx-auto font-light"
+                   data-aos="fade-up" data-aos-delay="150" data-aos-duration="1000">
+                    The deal-closing 3D toolkit for interior professionals.
+                </p>
+                <p class="text-base md:text-lg text-gray-400 mb-12 max-w-2xl mx-auto"
+                   data-aos="fade-up" data-aos-delay="250" data-aos-duration="1000">
+                    Walk clients through a photoreal 3D space, paint every surface in real time, and generate <span class="text-white font-semibold">branded proposals</span> in minutes. Built for <span class="text-white font-semibold">designers, contractors &amp; agencies</span>.
+                </p>
+
+                <!-- CTAs -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
+                     data-aos="fade-up" data-aos-delay="350" data-aos-duration="1000">
+                    <a href="/color-studio" class="group relative px-8 py-4 bg-gradient-to-r from-indigo-600 to-sky-500 rounded-full font-semibold text-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 overflow-hidden">
+                        <span class="relative z-10 flex items-center gap-2">
+                            <i class="fas fa-cube"></i>
+                            Launch 3D Studio
+                            <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform duration-300"></i>
+                        </span>
+                    </a>
+                    <a href="#products" class="group px-8 py-4 glassmorphism rounded-full font-semibold text-lg border-2 border-purple-500/40 hover:border-purple-400/70 transition-all duration-300 hover:scale-105">
+                        <span class="flex items-center gap-2">
+                            See How It Works
+                        </span>
+                    </a>
+                    <a href="#contact" class="group px-8 py-4 glassmorphism rounded-full font-semibold text-lg border border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105">
+                        <span class="flex items-center gap-2">
+                            Request a Demo
+                            <i class="fas fa-chevron-right text-sm group-hover:translate-x-1 transition-transform duration-300"></i>
+                        </span>
+                    </a>
+                </div>
+
+                <!-- Stats row -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto"
+                     data-aos="fade-up" data-aos-delay="450" data-aos-duration="1000">
+                    <div class="glassmorphism-dark rounded-xl p-4 border border-white/8">
+                        <div class="stat-10 text-3xl font-bold font-poppins gradient-text">10×</div>
+                        <div class="text-xs text-gray-400 mt-1 tracking-wider uppercase">Faster to Pitch</div>
+                    </div>
+                    <div class="glassmorphism-dark rounded-xl p-4 border border-white/8">
+                        <div class="stat-500 text-3xl font-bold font-poppins gradient-text">500+</div>
+                        <div class="text-xs text-gray-400 mt-1 tracking-wider uppercase">Colours &amp; Materials</div>
+                    </div>
+                    <div class="glassmorphism-dark rounded-xl p-4 border border-white/8">
+                        <div class="stat-25 text-3xl font-bold font-poppins gradient-text">25+</div>
+                        <div class="text-xs text-gray-400 mt-1 tracking-wider uppercase">Scene Templates</div>
+                    </div>
+                    <div class="glassmorphism-dark rounded-xl p-4 border border-white/8">
+                        <div class="stat-100 text-3xl font-bold font-poppins gradient-text">100%</div>
+                        <div class="text-xs text-gray-400 mt-1 tracking-wider uppercase">Browser-Based</div>
+                    </div>
+                </div>
+
+                <!-- Scroll Indicator -->
+                <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce hidden md:block">
+                    <a href="#trust" class="flex flex-col items-center text-gray-400 hover:text-white transition-colors">
+                        <span class="text-xs mb-2 tracking-widest uppercase">Scroll</span>
+                        <i class="fas fa-chevron-down text-xl"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-navy-900/60 pointer-events-none"></div>
+        </section>
+
+        <!-- ─────────────────────────────────────────────────
+             TRUST — CLIENT LOGOS
+        ───────────────────────────────────────────────── -->
+        <section id="trust" class="relative py-16 z-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="glassmorphism-dark rounded-2xl px-8 py-12 border border-white/10"
+                     data-aos="fade-up" data-aos-duration="1000">
+                    <p class="text-center text-xs font-semibold tracking-widest uppercase text-gray-400 mb-10">
+                        Built for the Teams Who Pitch, Present &amp; Sell
+                    </p>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-10 items-center justify-items-center">
+                        <div class="client-logo group">
+                            <div class="text-xl md:text-2xl font-bold font-poppins tracking-tight">DESIGN STUDIOS</div>
+                        </div>
+                        <div class="client-logo group">
+                            <div class="text-xl md:text-2xl font-bold font-poppins tracking-tight">SALES TEAMS</div>
+                        </div>
+                        <div class="client-logo group">
+                            <div class="text-xl md:text-2xl font-bold font-poppins tracking-tight">AGENCIES</div>
+                        </div>
+                        <div class="client-logo group">
+                            <div class="text-xl md:text-2xl font-bold font-poppins tracking-tight">REAL ESTATE</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─────────────────────────────────────────────────
+             PRODUCTS
+        ───────────────────────────────────────────────── -->
+        <section id="products" class="py-24 relative overflow-hidden">
+            <div class="absolute top-0 left-1/4 w-96 h-96 rounded-full bg-blue-600/5 blur-3xl pointer-events-none"></div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <!-- Section header -->
+                <div class="text-center mb-16" data-aos="fade-up" data-aos-duration="900">
+                    <span class="inline-block text-xs font-semibold tracking-widest uppercase text-blue-400 mb-3 px-3 py-1 rounded-full border border-blue-500/30 bg-blue-500/10">
+                        The Platform
+                    </span>
+                    <h2 class="text-4xl md:text-5xl font-bold font-poppins text-white mb-4">
+                        Everything You Need to<br/><span class="gradient-text">Create, Present &amp; Close</span>
+                    </h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto text-lg">
+                        One platform takes you from a rough idea to an interactive 3D experience and a polished, branded proposal — powered by AI, with no design skills required.
+                    </p>
+                </div>
+
+                <!-- Capability tabs -->
+                <div class="flex justify-center gap-3 mb-12" data-aos="fade-up" data-aos-delay="100">
+                    <button class="audience-tab active-tab" data-target="all">All Capabilities</button>
+                    <button class="audience-tab" data-target="create">Create</button>
+                    <button class="audience-tab" data-target="present">Present &amp; Close</button>
+                </div>
+
+                <!-- Products grid -->
+                <div id="products-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                    <!-- AI Scene Generation -->
+                    <div class="product-card glassmorphism-card rounded-2xl p-6 border border-white/12 group cursor-pointer"
+                         data-category="create"
+                         data-aos="fade-up" data-aos-delay="0" data-aos-duration="800">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500/20 to-sky-500/20 border border-indigo-500/30 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-wand-magic-sparkles text-indigo-400 text-lg"></i>
+                        </div>
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-lg font-semibold font-poppins text-white">AI Scene Generation</h3>
+                            <span class="text-xs px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">Create</span>
+                        </div>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-5">
+                            Describe what you have in mind and let AI build the 3D scene for you. Go from a sentence to an explorable space in minutes — no modelling required.
+                        </p>
+                        <ul class="space-y-1.5 mb-5">
+                            <li class="feature-bullet">Prompt-to-3D generation</li>
+                            <li class="feature-bullet">Smart layout suggestions</li>
+                            <li class="feature-bullet">Instant iterations</li>
+                            <li class="feature-bullet">No design skills needed</li>
+                        </ul>
+                        <a href="/color-studio" class="learn-more-link">Open in Studio <i class="fas fa-arrow-right text-xs ml-1 group-hover:translate-x-1 transition-transform"></i></a>
+                    </div>
+
+                    <!-- Real-Time 3D Editing -->
+                    <div class="product-card glassmorphism-card rounded-2xl p-6 border border-white/12 group cursor-pointer"
+                         data-category="create"
+                         data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-sky-500/20 to-cyan-500/20 border border-sky-500/30 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-cube text-sky-400 text-lg"></i>
+                        </div>
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-lg font-semibold font-poppins text-white">Real-Time 3D Editing</h3>
+                            <span class="text-xs px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-300 border border-sky-500/30">Create</span>
+                        </div>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-5">
+                            Click any surface and change colours, materials, and finishes live. See every tweak rendered instantly so you can perfect the look before you present.
+                        </p>
+                        <ul class="space-y-1.5 mb-5">
+                            <li class="feature-bullet">Live colour &amp; material edits</li>
+                            <li class="feature-bullet">Realistic lighting &amp; finishes</li>
+                            <li class="feature-bullet">Before / after comparison</li>
+                            <li class="feature-bullet">Unlimited variations</li>
+                        </ul>
+                        <a href="/color-studio" class="learn-more-link">Open in Studio <i class="fas fa-arrow-right text-xs ml-1"></i></a>
+                    </div>
+
+                    <!-- Templates & Asset Library -->
+                    <div class="product-card glassmorphism-card rounded-2xl p-6 border border-white/12 group cursor-pointer"
+                         data-category="create"
+                         data-aos="fade-up" data-aos-delay="200" data-aos-duration="800">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-500/20 to-purple-500/20 border border-violet-500/30 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-layer-group text-violet-400 text-lg"></i>
+                        </div>
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-lg font-semibold font-poppins text-white">Templates &amp; Asset Library</h3>
+                            <span class="text-xs px-2 py-0.5 rounded-full bg-violet-500/20 text-violet-300 border border-violet-500/30">Create</span>
+                        </div>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-5">
+                            Start from ready-made room types, scenes, and furnishings instead of a blank canvas. Drop in assets and customise to match any concept fast.
+                        </p>
+                        <ul class="space-y-1.5 mb-5">
+                            <li class="feature-bullet">Pre-built scene templates</li>
+                            <li class="feature-bullet">Furnishing &amp; material library</li>
+                            <li class="feature-bullet">Reusable saved presets</li>
+                            <li class="feature-bullet">Brand-ready styling</li>
+                        </ul>
+                        <a href="/color-studio" class="learn-more-link">Open in Studio <i class="fas fa-arrow-right text-xs ml-1"></i></a>
+                    </div>
+
+                    <!-- Interactive Walkthroughs -->
+                    <div class="product-card glassmorphism-card rounded-2xl p-6 border border-white/12 group cursor-pointer"
+                         data-category="present"
+                         data-aos="fade-up" data-aos-delay="0" data-aos-duration="800">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500/20 to-green-500/20 border border-emerald-500/30 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-person-walking text-emerald-400 text-lg"></i>
+                        </div>
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-lg font-semibold font-poppins text-white">Interactive Walkthroughs</h3>
+                            <span class="text-xs px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">Present</span>
+                        </div>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-5">
+                            Let clients explore the space themselves in real time. Interactive walkthroughs hold attention and build conviction far better than static slides.
+                        </p>
+                        <ul class="space-y-1.5 mb-5">
+                            <li class="feature-bullet">Immersive 3D navigation</li>
+                            <li class="feature-bullet">Guided presentation mode</li>
+                            <li class="feature-bullet">Works in the browser</li>
+                            <li class="feature-bullet">Live on any screen</li>
+                        </ul>
+                        <a href="/color-studio" class="learn-more-link">See It Live <i class="fas fa-arrow-right text-xs ml-1"></i></a>
+                    </div>
+
+                    <!-- Branded Proposals & Export -->
+                    <div class="product-card glassmorphism-card rounded-2xl p-6 border border-white/12 group cursor-pointer featured-card"
+                         data-category="present"
+                         data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">
+                        <div class="absolute top-4 right-4">
+                            <span class="text-xs px-2 py-0.5 rounded-full bg-gradient-to-r from-indigo-600 to-sky-500 text-white font-semibold">Deal Closer</span>
+                        </div>
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500/20 to-orange-500/20 border border-amber-500/40 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-file-export text-amber-400 text-lg"></i>
+                        </div>
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-lg font-semibold font-poppins text-white">Branded Proposals &amp; Export</h3>
+                            <span class="text-xs px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-200 border border-amber-500/40">Close</span>
+                        </div>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-5">
+                            Turn any 3D scene into a polished, white-label proposal in a click. Export PDFs and shareable visuals with your own branding to close faster.
+                        </p>
+                        <ul class="space-y-1.5 mb-5">
+                            <li class="feature-bullet">One-click PDF proposals</li>
+                            <li class="feature-bullet">Your logo &amp; branding</li>
+                            <li class="feature-bullet">Quote &amp; cost summaries</li>
+                            <li class="feature-bullet">High-res image export</li>
+                        </ul>
+                        <a href="#contact" class="learn-more-link">Request a Demo <i class="fas fa-arrow-right text-xs ml-1"></i></a>
+                    </div>
+
+                    <!-- Share & Collaborate -->
+                    <div class="product-card glassmorphism-card rounded-2xl p-6 border border-white/12 group cursor-pointer"
+                         data-category="present"
+                         data-aos="fade-up" data-aos-delay="200" data-aos-duration="800">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500/20 to-blue-500/20 border border-cyan-500/30 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-share-nodes text-cyan-400 text-lg"></i>
+                        </div>
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-lg font-semibold font-poppins text-white">Share &amp; Collaborate</h3>
+                            <span class="text-xs px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">Present</span>
+                        </div>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-5">
+                            Send a link and let stakeholders explore, comment, and align — no installs, no friction. Keep everyone looking at the same vision to decide faster.
+                        </p>
+                        <ul class="space-y-1.5 mb-5">
+                            <li class="feature-bullet">Shareable scene links</li>
+                            <li class="feature-bullet">Team &amp; client collaboration</li>
+                            <li class="feature-bullet">Faster sign-off</li>
+                            <li class="feature-bullet">Zero install for viewers</li>
+                        </ul>
+                        <a href="#contact" class="learn-more-link">Request a Demo <i class="fas fa-arrow-right text-xs ml-1"></i></a>
+                    </div>
+
+                </div><!-- /products-grid -->
+
+            </div>
+        </section>
+
+        <!-- ─────────────────────────────────────────────────
+             COLOR STUDIO PROMO BANNER
+        ───────────────────────────────────────────────── -->
+        <section class="py-16 relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="relative rounded-3xl overflow-hidden border border-purple-500/30"
+                     style="background: linear-gradient(135deg, rgba(74,0,217,0.12) 0%, rgba(139,92,246,0.10) 50%, rgba(14,14,30,0.95) 100%);"
+                     data-aos="fade-up" data-aos-duration="1000">
+                    <div class="absolute inset-0 pointer-events-none">
+                        <div class="absolute top-0 right-0 w-96 h-96 rounded-full bg-purple-600/10 blur-3xl"></div>
+                        <div class="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-blue-600/10 blur-3xl"></div>
+                    </div>
+                    <div class="relative z-10 px-8 py-14 md:px-16 flex flex-col md:flex-row items-center gap-10">
+                        <div class="flex-1">
+                            <span class="inline-block text-xs font-semibold tracking-widest uppercase text-purple-400 mb-3 px-3 py-1 rounded-full border border-purple-500/30 bg-purple-500/10">
+                                See It In Action
+                            </span>
+                            <h2 class="text-3xl md:text-4xl font-bold font-poppins text-white mb-4">
+                                Step inside an<br/><span class="gradient-text-purple">interactive 3D scene</span>
+                            </h2>
+                            <p class="text-gray-400 mb-8 max-w-lg leading-relaxed">
+                                Open the 3D Studio, explore a fully furnished space, and change any surface in real time. Generate it with AI, refine the look, and export a branded proposal — all in the browser, with no design skills.
+                            </p>
+                            <div class="flex flex-col sm:flex-row gap-4">
+                                <a href="/color-studio" class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-indigo-600 to-sky-500 hover:from-indigo-700 hover:to-sky-600 rounded-full font-semibold text-white transition-all duration-300 hover:shadow-2xl hover:scale-105">
+                                    <i class="fas fa-cube"></i>
+                                    Launch 3D Studio
+                                </a>
+                                <a href="#contact" class="inline-flex items-center justify-center gap-2 px-8 py-4 glassmorphism rounded-full font-semibold border border-white/20 hover:border-white/40 transition-all duration-300">
+                                    Request a Demo
+                                </a>
+                            </div>
+                        </div>
+                        <div class="flex-shrink-0 hidden md:flex items-center justify-center w-56 h-56">
+                            <div class="relative">
+                                <div class="w-48 h-48 rounded-2xl bg-gradient-to-br from-purple-600/20 to-blue-600/20 border border-purple-500/30 flex items-center justify-center">
+                                    <i class="fas fa-cube text-7xl text-purple-400/80"></i>
+                                </div>
+                                <div class="absolute -top-3 -right-3 w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-sky-500 flex items-center justify-center text-sm font-bold">3D</div>
+                                <div class="absolute -bottom-3 -left-3 w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-sky-500 flex items-center justify-center">
+                                    <i class="fas fa-palette text-xs"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─────────────────────────────────────────────────
+             ABOUT US
+        ───────────────────────────────────────────────── -->
+        <section id="about" class="py-24 relative overflow-hidden">
+            <div class="absolute top-0 right-1/4 w-80 h-80 rounded-full bg-purple-600/5 blur-3xl pointer-events-none"></div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <!-- Header -->
+                <div class="text-center mb-16" data-aos="fade-up" data-aos-duration="900">
+                    <span class="inline-block text-xs font-semibold tracking-widest uppercase text-purple-400 mb-3 px-3 py-1 rounded-full border border-purple-500/30 bg-purple-500/10">
+                        Why RioPoly
+                    </span>
+                    <h2 class="text-4xl md:text-5xl font-bold font-poppins text-white mb-4">
+                        Turn Ideas Into Immersive<br/><span class="gradient-text">3D Experiences — in Minutes</span>
+                    </h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto text-lg">
+                        RioPoly is an AI-powered 3D visualization platform that helps you show, not just tell. Communicate complex concepts, tell stories that stick, and move every conversation closer to "yes" — no design skills required.
+                    </p>
+                </div>
+
+                <!-- Two-column layout -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start mb-20">
+
+                    <!-- Story text -->
+                    <div data-aos="fade-right" data-aos-duration="900">
+                        <h3 class="text-2xl font-bold font-poppins text-white mb-6">
+                            Show It. <span class="gradient-text">Don't Just Say It.</span>
+                        </h3>
+                        <div class="space-y-4 text-gray-400 leading-relaxed">
+                            <p>
+                                The hardest ideas to sell are the ones people can't picture. Static slides, flat renders, and long documents leave too much to imagination — and imagination rarely closes the deal. RioPoly turns your concept into a living, walkable 3D experience your audience can explore in real time.
+                            </p>
+                            <p>
+                                Describe what you want and let our AI do the heavy lifting. In minutes you go from a rough idea to a polished, interactive 3D scene — no modelling skills, no design team, no steep learning curve. What used to take specialists weeks now takes you an afternoon.
+                            </p>
+                            <p>
+                                The result: presentations that command the room, pitches that feel real, and faster decisions because everyone is finally looking at the same vision. Whether you're winning a client, aligning a team, or demonstrating a product, RioPoly helps you communicate with clarity and close with confidence.
+                            </p>
+                        </div>
+                        <div class="mt-8 flex gap-4">
+                            <a href="/color-studio" class="px-6 py-3 bg-gradient-to-r from-indigo-600 to-sky-500 rounded-full font-semibold text-sm hover:shadow-xl hover:scale-105 transition-all duration-300">
+                                Launch 3D Studio
+                            </a>
+                            <a href="#contact" class="px-6 py-3 glassmorphism rounded-full font-semibold text-sm border border-white/20 hover:border-white/40 transition-all duration-300">
+                                Request a Demo
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Value pillars -->
+                    <div data-aos="fade-left" data-aos-duration="900" data-aos-delay="100">
+                        <div class="space-y-4">
+                            <div class="glassmorphism-card rounded-xl p-5 border border-white/10 flex gap-4 items-start">
+                                <div class="w-10 h-10 rounded-lg bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <i class="fas fa-wand-magic-sparkles text-indigo-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-white mb-1">Effortless, Even Without Design Skills</h4>
+                                    <p class="text-gray-400 text-sm leading-relaxed">Anyone can create professional-quality 3D content. Start from a prompt or a template — RioPoly handles the complexity so you can focus on the message.</p>
+                                </div>
+                            </div>
+                            <div class="glassmorphism-card rounded-xl p-5 border border-white/10 flex gap-4 items-start">
+                                <div class="w-10 h-10 rounded-lg bg-sky-500/20 border border-sky-500/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <i class="fas fa-brain text-sky-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-white mb-1">AI Does the Heavy Lifting</h4>
+                                    <p class="text-gray-400 text-sm leading-relaxed">Generate scenes, suggest layouts, and refine visuals with AI. Iterate on ideas in seconds instead of starting over — and make every version better than the last.</p>
+                                </div>
+                            </div>
+                            <div class="glassmorphism-card rounded-xl p-5 border border-white/10 flex gap-4 items-start">
+                                <div class="w-10 h-10 rounded-lg bg-violet-500/20 border border-violet-500/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <i class="fas fa-chart-line text-violet-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-white mb-1">Built for Business Outcomes</h4>
+                                    <p class="text-gray-400 text-sm leading-relaxed">More than pretty pictures. Interactive, realistic visualization shortens sales cycles, sharpens decisions, and gets stakeholders aligned faster.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Use cases -->
+                <div class="mb-8" data-aos="fade-up" data-aos-duration="900">
+                    <h3 class="text-2xl md:text-3xl font-bold font-poppins text-center text-white mb-3">Built for the Moments That Move Business Forward</h3>
+                    <p class="text-gray-400 text-center max-w-2xl mx-auto mb-12">Wherever you need to make an idea click, RioPoly gives you a faster, more convincing way to get there.</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+                        <div class="glassmorphism-card rounded-2xl p-6 border border-white/10 hover:border-indigo-400/40 transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="0">
+                            <div class="w-12 h-12 rounded-xl bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center mb-4">
+                                <i class="fas fa-display text-indigo-400 text-lg"></i>
+                            </div>
+                            <h4 class="font-semibold text-white mb-2 font-poppins">Impactful Presentations &amp; Demos</h4>
+                            <p class="text-gray-400 text-sm leading-relaxed">Replace flat slides with interactive 3D walkthroughs that hold attention and make your message unforgettable.</p>
+                        </div>
+
+                        <div class="glassmorphism-card rounded-2xl p-6 border border-white/10 hover:border-sky-400/40 transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="60">
+                            <div class="w-12 h-12 rounded-xl bg-sky-500/20 border border-sky-500/30 flex items-center justify-center mb-4">
+                                <i class="fas fa-cube text-sky-400 text-lg"></i>
+                            </div>
+                            <h4 class="font-semibold text-white mb-2 font-poppins">Visualize the Hard-to-Explain</h4>
+                            <p class="text-gray-400 text-sm leading-relaxed">Bring concepts to life that static images and documents simply can't capture — so everyone sees exactly what you mean.</p>
+                        </div>
+
+                        <div class="glassmorphism-card rounded-2xl p-6 border border-white/10 hover:border-emerald-400/40 transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="120">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center mb-4">
+                                <i class="fas fa-handshake text-emerald-400 text-lg"></i>
+                            </div>
+                            <h4 class="font-semibold text-white mb-2 font-poppins">Power Sales &amp; Pre-Sales</h4>
+                            <p class="text-gray-400 text-sm leading-relaxed">Turn conversations into experiences. Let prospects explore interactive, AI-generated 3D scenes and watch engagement soar.</p>
+                        </div>
+
+                        <div class="glassmorphism-card rounded-2xl p-6 border border-white/10 hover:border-amber-400/40 transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="0">
+                            <div class="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-500/30 flex items-center justify-center mb-4">
+                                <i class="fas fa-bullhorn text-amber-400 text-lg"></i>
+                            </div>
+                            <h4 class="font-semibold text-white mb-2 font-poppins">Pitch Ideas That Land</h4>
+                            <p class="text-gray-400 text-sm leading-relaxed">Pitch products, solutions, and strategies more effectively — give stakeholders something they can actually picture and believe in.</p>
+                        </div>
+
+                        <div class="glassmorphism-card rounded-2xl p-6 border border-white/10 hover:border-violet-400/40 transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="60">
+                            <div class="w-12 h-12 rounded-xl bg-violet-500/20 border border-violet-500/30 flex items-center justify-center mb-4">
+                                <i class="fas fa-bolt text-violet-400 text-lg"></i>
+                            </div>
+                            <h4 class="font-semibold text-white mb-2 font-poppins">Accelerate Decisions</h4>
+                            <p class="text-gray-400 text-sm leading-relaxed">Realistic visualization and simulation help teams and clients decide faster, with confidence and fewer costly revisions.</p>
+                        </div>
+
+                        <div class="glassmorphism-card rounded-2xl p-6 border border-white/10 hover:border-cyan-400/40 transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="120">
+                            <div class="w-12 h-12 rounded-xl bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center mb-4">
+                                <i class="fas fa-robot text-cyan-400 text-lg"></i>
+                            </div>
+                            <h4 class="font-semibold text-white mb-2 font-poppins">Pro-Quality, No Expertise Needed</h4>
+                            <p class="text-gray-400 text-sm leading-relaxed">AI lets anyone create professional 3D content — no modelling background, no design team, no learning curve.</p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ─────────────────────────────────────────────────
+             GALLERY
+        ───────────────────────────────────────────────── -->
+        <section id="gallery" class="py-24 relative overflow-hidden">
+            <div class="absolute bottom-0 right-0 w-96 h-96 rounded-full bg-blue-600/5 blur-3xl pointer-events-none"></div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <div class="text-center mb-16" data-aos="fade-up" data-aos-duration="900">
+                    <span class="inline-block text-xs font-semibold tracking-widest uppercase text-blue-400 mb-3 px-3 py-1 rounded-full border border-blue-500/30 bg-blue-500/10">
+                        Use Cases
+                    </span>
+                    <h2 class="text-4xl md:text-5xl font-bold font-poppins text-white mb-4">
+                        See What You Can<br/><span class="gradient-text">Build in Minutes</span>
+                    </h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto text-lg">
+                        From property walkthroughs to product demos and design pitches — a glimpse of the interactive 3D experiences teams create with RioPoly.
+                    </p>
+                </div>
+
+                <!-- Gallery grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
+
+                    <div class="gallery-item rounded-2xl overflow-hidden border border-white/10 cursor-pointer group"
+                         data-aos="fade-up" data-aos-delay="0" data-aos-duration="700">
+                        <div class="relative overflow-hidden" style="height: 260px; background: linear-gradient(135deg, #1a2a4a 0%, #2a1a4a 100%);">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <i class="fas fa-building text-7xl text-blue-500/20"></i>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-navy-900 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
+                            <div class="absolute bottom-0 left-0 right-0 p-5 translate-y-full group-hover:translate-y-0 transition-transform duration-400">
+                                <div class="text-white font-semibold">Property Walkthrough</div>
+                                <div class="text-gray-300 text-sm">Real Estate &amp; Architecture</div>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-navy-800/50">
+                            <h4 class="font-semibold text-white text-sm">Pre-Sell a Property Before It's Built</h4>
+                            <p class="text-gray-400 text-xs mt-1">Let buyers walk the space and picture themselves in it</p>
+                            <div class="flex gap-2 mt-2">
+                                <span class="text-xs px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-300">Real Estate</span>
+                                <span class="text-xs px-2 py-0.5 rounded-full bg-white/10 text-gray-300">Walkthrough</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item rounded-2xl overflow-hidden border border-white/10 cursor-pointer group"
+                         data-aos="fade-up" data-aos-delay="100" data-aos-duration="700">
+                        <div class="relative overflow-hidden" style="height: 260px; background: linear-gradient(135deg, #1a3a2a 0%, #1a2a4a 100%);">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <i class="fas fa-couch text-7xl text-green-500/20"></i>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-navy-900 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
+                            <div class="absolute bottom-0 left-0 right-0 p-5 translate-y-full group-hover:translate-y-0 transition-transform duration-400">
+                                <div class="text-white font-semibold">Interior Design Pitch</div>
+                                <div class="text-gray-300 text-sm">Designers &amp; Studios</div>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-navy-800/50">
+                            <h4 class="font-semibold text-white text-sm">Win the Client With a Living Concept</h4>
+                            <p class="text-gray-400 text-xs mt-1">Show colours, materials, and layout options in real time</p>
+                            <div class="flex gap-2 mt-2">
+                                <span class="text-xs px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300">Design</span>
+                                <span class="text-xs px-2 py-0.5 rounded-full bg-white/10 text-gray-300">Pitch</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item rounded-2xl overflow-hidden border border-white/10 cursor-pointer group"
+                         data-aos="fade-up" data-aos-delay="200" data-aos-duration="700">
+                        <div class="relative overflow-hidden" style="height: 260px; background: linear-gradient(135deg, #2a1a3a 0%, #3a1a1a 100%);">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <i class="fas fa-store text-7xl text-pink-500/20"></i>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-navy-900 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
+                            <div class="absolute bottom-0 left-0 right-0 p-5 translate-y-full group-hover:translate-y-0 transition-transform duration-400">
+                                <div class="text-white font-semibold">Retail &amp; Store Concept</div>
+                                <div class="text-gray-300 text-sm">Brands &amp; Franchises</div>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-navy-800/50">
+                            <h4 class="font-semibold text-white text-sm">Visualize a Store Before the Build-Out</h4>
+                            <p class="text-gray-400 text-xs mt-1">Align stakeholders on layout, branding, and flow</p>
+                            <div class="flex gap-2 mt-2">
+                                <span class="text-xs px-2 py-0.5 rounded-full bg-pink-500/20 text-pink-300">Retail</span>
+                                <span class="text-xs px-2 py-0.5 rounded-full bg-white/10 text-gray-300">Concept</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item rounded-2xl overflow-hidden border border-white/10 cursor-pointer group"
+                         data-aos="fade-up" data-aos-delay="0" data-aos-duration="700">
+                        <div class="relative overflow-hidden" style="height: 220px; background: linear-gradient(135deg, #1a2a3a 0%, #0a1a2a 100%);">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <i class="fas fa-box-open text-7xl text-cyan-500/20"></i>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-navy-800/50">
+                            <h4 class="font-semibold text-white text-sm">Product Showcase &amp; Demo</h4>
+                            <p class="text-gray-400 text-xs mt-1">Present products in an interactive, explorable 3D scene</p>
+                            <div class="flex gap-2 mt-2">
+                                <span class="text-xs px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300">Sales</span>
+                                <span class="text-xs px-2 py-0.5 rounded-full bg-white/10 text-gray-300">Demo</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item rounded-2xl overflow-hidden border border-white/10 cursor-pointer group"
+                         data-aos="fade-up" data-aos-delay="100" data-aos-duration="700">
+                        <div class="relative overflow-hidden" style="height: 220px; background: linear-gradient(135deg, #1a3a1a 0%, #1a2a3a 100%);">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <i class="fas fa-lightbulb text-7xl text-green-500/20"></i>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-navy-800/50">
+                            <h4 class="font-semibold text-white text-sm">Strategy &amp; Concept Pitch</h4>
+                            <p class="text-gray-400 text-xs mt-1">Make an abstract idea tangible so teams say yes faster</p>
+                            <div class="flex gap-2 mt-2">
+                                <span class="text-xs px-2 py-0.5 rounded-full bg-green-500/20 text-green-300">Agency</span>
+                                <span class="text-xs px-2 py-0.5 rounded-full bg-white/10 text-gray-300">Pitch</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Try Color Studio Card -->
+                    <div class="gallery-item rounded-2xl overflow-hidden border border-purple-500/30 cursor-pointer group"
+                         style="background: linear-gradient(135deg, rgba(74,0,217,0.15), rgba(139,92,246,0.10));"
+                         data-aos="fade-up" data-aos-delay="200" data-aos-duration="700">
+                        <div class="relative overflow-hidden flex flex-col items-center justify-center p-8" style="height: 220px;">
+                            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-indigo-600 to-sky-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                                <i class="fas fa-cube text-2xl text-white"></i>
+                            </div>
+                            <h4 class="text-lg font-bold font-poppins text-white text-center mb-2">Build Your Own</h4>
+                            <p class="text-gray-400 text-sm text-center">Open the 3D Studio and create a scene in minutes</p>
+                        </div>
+                        <div class="p-4 bg-navy-800/50">
+                            <a href="/color-studio" class="block w-full text-center px-4 py-2 bg-gradient-to-r from-indigo-600 to-sky-500 rounded-lg text-sm font-semibold hover:opacity-90 transition-opacity">
+                                Launch 3D Studio →
+                            </a>
+                        </div>
+                    </div>
+
+                </div><!-- /gallery grid -->
+
+                <div class="text-center" data-aos="fade-up" data-aos-duration="700">
+                    <a href="#contact" class="inline-flex items-center gap-2 px-8 py-4 glassmorphism rounded-full font-semibold border border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105">
+                        <i class="fas fa-envelope"></i>
+                        Request a Demo
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ─────────────────────────────────────────────────
+             WHY CHOOSE US (Feature Highlights)
+        ───────────────────────────────────────────────── -->
+        <section class="py-20 relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-14" data-aos="fade-up" data-aos-duration="900">
+                    <h2 class="text-4xl font-bold font-poppins text-white mb-4">
+                        Why <span class="gradient-text">RioPoly?</span>
+                    </h2>
+                    <p class="text-gray-400 max-w-xl mx-auto">A faster, smarter way to turn ideas into immersive 3D — built for professionals, not just designers.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+                    <div class="glassmorphism-card rounded-2xl p-6 border border-white/10 text-center" data-aos="fade-up" data-aos-delay="0">
+                        <div class="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-bolt text-blue-400 text-xl"></i>
+                        </div>
+                        <h4 class="font-semibold text-white mb-2">AI-Powered Speed</h4>
+                        <p class="text-gray-400 text-sm">Go from idea to interactive 3D in minutes. What used to take specialists weeks now takes you an afternoon.</p>
+                    </div>
+                    <div class="glassmorphism-card rounded-2xl p-6 border border-white/10 text-center" data-aos="fade-up" data-aos-delay="100">
+                        <div class="w-14 h-14 rounded-2xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-wand-magic-sparkles text-purple-400 text-xl"></i>
+                        </div>
+                        <h4 class="font-semibold text-white mb-2">No Design Skills Needed</h4>
+                        <p class="text-gray-400 text-sm">Anyone on your team can create professional-quality 3D content — no modelling background required.</p>
+                    </div>
+                    <div class="glassmorphism-card rounded-2xl p-6 border border-white/10 text-center" data-aos="fade-up" data-aos-delay="200">
+                        <div class="w-14 h-14 rounded-2xl bg-green-500/10 border border-green-500/30 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-vr-cardboard text-green-400 text-xl"></i>
+                        </div>
+                        <h4 class="font-semibold text-white mb-2">Interactive &amp; Realistic</h4>
+                        <p class="text-gray-400 text-sm">Photoreal, explorable scenes that let your audience truly experience the idea — and decide with confidence.</p>
+                    </div>
+                    <div class="glassmorphism-card rounded-2xl p-6 border border-white/10 text-center" data-aos="fade-up" data-aos-delay="300">
+                        <div class="w-14 h-14 rounded-2xl bg-yellow-500/10 border border-yellow-500/30 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-file-export text-yellow-400 text-xl"></i>
+                        </div>
+                        <h4 class="font-semibold text-white mb-2">Share &amp; Export Anywhere</h4>
+                        <p class="text-gray-400 text-sm">Send a link or export branded proposals and visuals — ready to present, pitch, and close, on any screen.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─────────────────────────────────────────────────
+             CONTACT (FORM + WHATSAPP)
+        ───────────────────────────────────────────────── -->
+        <section id="contact" class="py-24 relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-80 h-80 rounded-full bg-purple-600/5 blur-3xl pointer-events-none"></div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <div class="text-center mb-16" data-aos="fade-up" data-aos-duration="900">
+                    <span class="inline-block text-xs font-semibold tracking-widest uppercase text-blue-400 mb-3 px-3 py-1 rounded-full border border-blue-500/30 bg-blue-500/10">
+                        Get In Touch
+                    </span>
+                    <h2 class="text-4xl md:text-5xl font-bold font-poppins text-white mb-4">
+                        See RioPoly<br/><span class="gradient-text">In Action</span>
+                    </h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto text-lg">
+                        Book a personalized demo or tell us what you're working on. We'll show you how to turn your ideas into immersive 3D experiences — fast.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+
+                    <!-- Left: Contact Form -->
+                    <div data-aos="fade-right" data-aos-duration="900">
+                        <form id="contact-form" action="https://formspree.io/f/xkoadaqy" method="POST" class="glassmorphism-dark rounded-2xl p-8 border border-white/10 space-y-5">
+                            <h3 class="text-xl font-bold font-poppins text-white mb-2">Request a Demo</h3>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="form-label">Full Name *</label>
+                                    <input type="text" id="f-name" name="name" required placeholder="Your full name" class="form-input">
+                                </div>
+                                <div>
+                                    <label class="form-label">Phone Number *</label>
+                                    <input type="tel" id="f-phone" name="phone" required placeholder="+91 99444 80052" class="form-input">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="form-label">Email Address</label>
+                                <input type="email" id="f-email" name="email" placeholder="you@company.com" class="form-input">
+                            </div>
+
+                            <div>
+                                <label class="form-label">I am a *</label>
+                                <select id="f-type" name="type" required class="form-input">
+                                    <option value="" disabled selected>Select your profile</option>
+                                    <option value="designer">Interior Designer / Architect</option>
+                                    <option value="contractor">Paint Contractor</option>
+                                    <option value="agency">Design Agency / Studio</option>
+                                    <option value="sales">Sales / Pre-Sales Team</option>
+                                    <option value="realestate">Real Estate / Developer</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="form-label">What are you interested in?</label>
+                                <select id="f-service" name="service" class="form-input">
+                                    <option value="" disabled selected>Select an option</option>
+                                    <option value="demo">Product Demo</option>
+                                    <option value="studio">3D Studio Access</option>
+                                    <option value="proposals">Branded Proposals &amp; Export</option>
+                                    <option value="team">Team / Agency Plan</option>
+                                    <option value="partner">Partnership / Reseller</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="form-label">Project Details / Message</label>
+                                <textarea id="f-message" name="message" rows="4" placeholder="Tell us about your project, approximate size, timeline, or any specific requirements…" class="form-input resize-none"></textarea>
+                            </div>
+
+                            <div id="form-feedback" class="hidden"></div>
+
+                            <button type="submit" id="form-submit-btn"
+                                class="w-full py-4 bg-gradient-to-r from-indigo-600 to-sky-500 hover:from-indigo-700 hover:to-sky-600 rounded-xl font-semibold text-white text-base transition-all duration-300 hover:shadow-xl hover:scale-[1.01] flex items-center justify-center gap-2">
+                                <i class="fas fa-paper-plane"></i>
+                                Request Demo
+                            </button>
+
+                            <p class="text-xs text-gray-500 text-center">
+                                We respond within 24 hours on business days. Your information is kept confidential.
+                            </p>
+                        </form>
+                    </div>
+
+                    <!-- Right: Info + WhatsApp + Map -->
+                    <div class="space-y-6" data-aos="fade-left" data-aos-duration="900" data-aos-delay="100">
+
+                        <!-- Direct Contact Cards -->
+                        <div class="glassmorphism-dark rounded-2xl p-6 border border-white/10">
+                            <h3 class="text-lg font-bold font-poppins text-white mb-5">Direct Contact</h3>
+                            <div class="space-y-4">
+                                <!-- WhatsApp -->
+                                <a href="https://wa.me/919944480052?text=Hi%2C%20I%27m%20interested%20in%20RioPoly.%20Please%20get%20in%20touch." target="_blank"
+                                   class="whatsapp-cta flex items-center gap-4 p-4 rounded-xl border border-green-500/30 bg-green-500/10 hover:bg-green-500/20 transition-all duration-300 group"
+                                   data-track="whatsapp-contact">
+                                    <div class="w-12 h-12 rounded-xl bg-green-500/20 border border-green-500/40 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                                        <i class="fab fa-whatsapp text-green-400 text-2xl"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-semibold text-white">WhatsApp Us</div>
+                                        <div class="text-green-400 text-sm">+91 99444 80052 · Available 9am–7pm</div>
+                                        <div class="text-gray-400 text-xs">Fastest response channel</div>
+                                    </div>
+                                    <i class="fas fa-chevron-right text-gray-500 ml-auto group-hover:translate-x-1 transition-transform"></i>
+                                </a>
+
+                                <a href="mailto:Request@gotoanalyze.com"
+                                   class="flex items-center gap-4 p-4 rounded-xl border border-white/10 bg-white/5 hover:bg-white/8 transition-all duration-300 group">
+                                    <div class="w-12 h-12 rounded-xl bg-blue-500/20 border border-blue-500/30 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                                        <i class="fas fa-envelope text-blue-400 text-lg"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-semibold text-white">Email Us</div>
+                                        <div class="text-blue-400 text-sm">Request@gotoanalyze.com</div>
+                                        <div class="text-gray-400 text-xs">For detailed proposals &amp; quotes</div>
+                                    </div>
+                                </a>
+
+                                <div class="flex items-center gap-4 p-4 rounded-xl border border-white/10 bg-white/5">
+                                    <div class="w-12 h-12 rounded-xl bg-purple-500/20 border border-purple-500/30 flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-map-marker-alt text-purple-400 text-lg"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-semibold text-white">Headquarters</div>
+                                        <div class="text-gray-300 text-sm">Bangalore, Karnataka</div>
+                                        <div class="text-gray-400 text-xs">Pan-India &amp; International Projects</div>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center gap-4 p-4 rounded-xl border border-white/10 bg-white/5">
+                                    <div class="w-12 h-12 rounded-xl bg-yellow-500/20 border border-yellow-500/30 flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-clock text-yellow-400 text-lg"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-semibold text-white">Business Hours</div>
+                                        <div class="text-gray-300 text-sm">Monday – Saturday · 9:00 AM – 7:00 PM</div>
+                                        <div class="text-gray-400 text-xs">IST (Indian Standard Time)</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Audience CTA splits -->
+                        <div class="glassmorphism-dark rounded-2xl p-6 border border-white/10">
+                            <h3 class="text-base font-bold font-poppins text-white mb-4">What are you looking for?</h3>
+                            <div class="space-y-3">
+                                <a href="/color-studio"
+                                   class="flex items-center gap-3 p-3.5 rounded-xl border border-purple-500/30 bg-purple-500/10 hover:bg-purple-500/15 transition-all duration-300 group">
+                                    <i class="fas fa-cube text-purple-400 w-5 text-center"></i>
+                                    <div class="flex-1">
+                                        <div class="text-white font-medium text-sm">I'm a Designer / Studio</div>
+                                        <div class="text-gray-400 text-xs">Create &amp; present in the 3D Studio</div>
+                                    </div>
+                                    <i class="fas fa-arrow-right text-xs text-purple-400 group-hover:translate-x-1 transition-transform"></i>
+                                </a>
+                                <a href="#contact" onclick="document.getElementById('f-type').value='agency'; document.getElementById('f-service').value='proposals';"
+                                   class="flex items-center gap-3 p-3.5 rounded-xl border border-blue-500/30 bg-blue-500/10 hover:bg-blue-500/15 transition-all duration-300 group">
+                                    <i class="fas fa-handshake text-blue-400 w-5 text-center"></i>
+                                    <div class="flex-1">
+                                        <div class="text-white font-medium text-sm">I'm a Sales / Agency Team</div>
+                                        <div class="text-gray-400 text-xs">Close deals with branded 3D proposals</div>
+                                    </div>
+                                    <i class="fas fa-arrow-right text-xs text-blue-400 group-hover:translate-x-1 transition-transform"></i>
+                                </a>
+                                <a href="#contact" onclick="document.getElementById('f-type').value='other'; document.getElementById('f-service').value='partner';"
+                                   class="flex items-center gap-3 p-3.5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/8 transition-all duration-300 group">
+                                    <i class="fas fa-store text-gray-400 w-5 text-center"></i>
+                                    <div class="flex-1">
+                                        <div class="text-white font-medium text-sm">I'm a Partner / Reseller</div>
+                                        <div class="text-gray-400 text-xs">Partnership &amp; reseller enquiries</div>
+                                    </div>
+                                    <i class="fas fa-arrow-right text-xs text-gray-400 group-hover:translate-x-1 transition-transform"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ─────────────────────────────────────────────────
+         FLOATING WHATSAPP BUTTON
+    ───────────────────────────────────────────────── -->
+    <a href="https://wa.me/919944480052?text=Hi%2C%20I%27m%20interested%20in%20RioPoly.%20Please%20get%20in%20touch."
+       target="_blank"
+       id="whatsapp-float"
+       class="whatsapp-float-btn"
+       title="Chat on WhatsApp"
+       data-track="whatsapp-float"
+       aria-label="Chat with RioPoly on WhatsApp">
+        <i class="fab fa-whatsapp text-2xl"></i>
+        <span class="whatsapp-tooltip">Chat with us!</span>
+    </a>
+
+    <!-- ─────────────────────────────────────────────────
+         FOOTER
+    ───────────────────────────────────────────────── -->
+    <footer class="bg-gradient-to-b from-navy-800 to-navy-950 border-t border-white/10 mt-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
+
+                <!-- Company Info -->
+                <div class="lg:col-span-1 space-y-5">
+                    <div class="flex items-center space-x-3">
+                        <img src="assets/riopoly-mark.svg" alt="RioPoly logo" class="w-10 h-10 rounded-lg flex-shrink-0" />
+                        <div>
+                            <span class="block text-lg font-bold font-poppins bg-gradient-to-r from-indigo-400 to-sky-400 bg-clip-text text-transparent">RioPoly</span>
+                            <span class="block text-xs text-gray-500 tracking-wider">3D PROPOSAL SUITE</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Visualize. Propose. Close.<br/>
+                        Premium 3D visualization &amp; proposal software helping interior designers, contractors, and agencies win more work.
+                    </p>
+                    <div class="flex space-x-3 pt-1">
+                        <a href="#" class="w-9 h-9 bg-white/5 hover:bg-white/12 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110" aria-label="Facebook">
+                            <i class="fab fa-facebook-f text-gray-400 hover:text-blue-400 text-sm"></i>
+                        </a>
+                        <a href="#" class="w-9 h-9 bg-white/5 hover:bg-white/12 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110" aria-label="Instagram">
+                            <i class="fab fa-instagram text-gray-400 hover:text-pink-400 text-sm"></i>
+                        </a>
+                        <a href="#" class="w-9 h-9 bg-white/5 hover:bg-white/12 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in text-gray-400 hover:text-blue-400 text-sm"></i>
+                        </a>
+                        <a href="https://wa.me/919944480052" target="_blank" class="w-9 h-9 bg-white/5 hover:bg-green-500/20 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110" aria-label="WhatsApp">
+                            <i class="fab fa-whatsapp text-gray-400 hover:text-green-400 text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-sm font-semibold font-poppins mb-5 text-white uppercase tracking-wider">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="footer-link">Home</a></li>
+                        <li><a href="#products" class="footer-link">Platform</a></li>
+                        <li><a href="#about" class="footer-link">About Us</a></li>
+                        <li><a href="#gallery" class="footer-link">Use Cases</a></li>
+                        <li><a href="/color-studio" class="footer-link flex items-center gap-1"><i class="fas fa-cube text-purple-400 text-xs"></i>3D Studio</a></li>
+                        <li><a href="#contact" class="footer-link">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div>
+                    <h3 class="text-sm font-semibold font-poppins mb-5 text-white uppercase tracking-wider">Platform</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#products" class="footer-link">AI Scene Generation</a></li>
+                        <li><a href="#products" class="footer-link">Real-Time 3D Editing</a></li>
+                        <li><a href="#products" class="footer-link">Interactive Walkthroughs</a></li>
+                        <li><a href="#products" class="footer-link">Branded Proposals &amp; Export</a></li>
+                        <li><a href="#products" class="footer-link">Templates &amp; Assets</a></li>
+                        <li><a href="/color-studio" class="footer-link">3D Studio</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-sm font-semibold font-poppins mb-5 text-white uppercase tracking-wider">Contact</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-map-marker-alt text-blue-400 mt-0.5 w-4 text-center flex-shrink-0"></i>
+                            <span class="text-gray-400 text-sm">Bangalore, Karnataka<br/>India · International Projects</span>
+                        </li>
+                        <li>
+                            <a href="tel:+919944480052" class="flex items-center gap-3 text-gray-400 hover:text-white transition-colors text-sm">
+                                <i class="fas fa-phone-alt text-purple-400 w-4 text-center flex-shrink-0"></i>
+                                +91 99444 80052
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailto:Request@gotoanalyze.com" class="flex items-center gap-3 text-gray-400 hover:text-white transition-colors text-sm">
+                                <i class="fas fa-envelope text-blue-400 w-4 text-center flex-shrink-0"></i>
+                                Request@gotoanalyze.com
+                            </a>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-clock text-yellow-400 mt-0.5 w-4 text-center flex-shrink-0"></i>
+                            <span class="text-gray-400 text-sm">Mon – Sat · 9:00 AM – 7:00 PM IST</span>
+                        </li>
+                    </ul>
+                    <a href="https://wa.me/919944480052?text=Hi%2C%20I%27m%20interested%20in%20RioPoly." target="_blank"
+                       class="mt-5 inline-flex items-center gap-2 px-4 py-2 bg-green-500/20 border border-green-500/40 rounded-lg text-green-400 text-sm font-semibold hover:bg-green-500/30 transition-all duration-300">
+                        <i class="fab fa-whatsapp"></i>
+                        Quick WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <!-- Bottom bar -->
+            <div class="border-t border-white/8 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-500 text-sm text-center md:text-left">
+                    &copy; 2026 RioPoly. All rights reserved. Bangalore, India.
+                </p>
+                <div class="flex items-center gap-5 text-sm text-gray-500">
+                    <a href="/privacy" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <span>|</span>
+                    <a href="/terms" class="hover:text-white transition-colors">Terms of Use</a>
+                    <span>|</span>
+                    <a href="/color-studio" class="hover:text-white transition-colors flex items-center gap-1"><i class="fas fa-cube text-xs text-purple-400"></i> 3D Studio</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Custom Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>

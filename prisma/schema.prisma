@@ -1,0 +1,340 @@
+// RioPoly billing schema (Supabase Postgres via Prisma)
+// Design rules:
+//  - Entitlement ledger: access is derived from Entitlement rows, never from User.plan/credits.
+//  - Unified Order: one-time + subscription cycles share one row shape (Order.kind).
+//  - GST invoice for every paid Order; amounts stored in paise (Int).
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ---------------------------------------------------------------------------
+// Enums
+// ---------------------------------------------------------------------------
+
+enum PlanKind {
+  one_time
+  subscription
+}
+
+enum BillingPeriod {
+  monthly
+  yearly
+}
+
+enum EntitlementKind {
+  credits
+  unlimited
+  feature_flag
+}
+
+enum OrderKind {
+  one_time
+  subscription_cycle
+}
+
+enum OrderStatus {
+  created
+  paid
+  failed
+  refunded
+}
+
+enum PaymentStatus {
+  created
+  authorized
+  captured
+  failed
+  refunded
+}
+
+enum SubscriptionStatus {
+  created
+  authenticated
+  active
+  pending
+  halted
+  cancelled
+  completed
+  expired
+}
+
+enum GstTreatment {
+  cgst_sgst // intra-state (Tamil Nadu) -> CGST 9% + SGST 9%
+  igst      // other Indian state -> IGST 18%
+  export    // international -> 0% GST, export
+}
+
+enum WebhookStatus {
+  received
+  processed
+  failed
+}
+
+// ---------------------------------------------------------------------------
+// Core
+// ---------------------------------------------------------------------------
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  image         String?
+  emailVerified DateTime?
+
+  // Billing profile — drives GST place-of-supply.
+  businessName   String?
+  gstin          String?
+  billingState   String? // e.g. "Tamil Nadu"
+  billingCountry String  @default("IN")
+  billingAddress String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  projects      Project[]
+  subscriptions Subscription[]
+  entitlements  Entitlement[]
+  orders        Order[]
+  invoices      Invoice[]
+  accounts      Account[]
+  sessions      Session[]
+}
+
+model Project {
+  id           String  @id @default(cuid())
+  userId       String
+  name         String  @default("Untitled Project")
+  sceneData    Json? // 3D scene + paint scheme
+  thumbnailUrl String?
+  // Credit (entitlement) that unlocked this project, if any.
+  entitlementId String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  entitlement Entitlement? @relation(fields: [entitlementId], references: [id])
+
+  @@index([userId])
+}
+
+// Cached snapshot of lib/plans.ts. SKU id is the PK so Orders/Subscriptions
+// keep FK integrity even if a SKU is later retired from the catalog file.
+model Plan {
+  id                 String         @id // e.g. "pro-monthly"
+  kind               PlanKind
+  displayName        String
+  description        String?
+  pricePaise         Int
+  currency           String         @default("INR")
+  billingPeriod      BillingPeriod? // null for one_time
+  creditValue        Int? // credits granted (one_time packs)
+  creditValidityDays Int? // null = never expires
+  entitlementKind    EntitlementKind
+  razorpayPlanId     String?        @unique // set for subscriptions after sync
+  active             Boolean        @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  subscriptions Subscription[]
+  orders        Order[]
+}
+
+model Subscription {
+  id                     String             @id @default(cuid())
+  userId                 String
+  planId                 String
+  razorpaySubscriptionId String             @unique
+  status                 SubscriptionStatus @default(created)
+  currentStart           DateTime?
+  currentEnd             DateTime?
+  chargeAt               DateTime?
+  totalCount             Int?
+  paidCount              Int                @default(0)
+  cancelAtCycleEnd       Boolean            @default(false)
+  cancelledAt            DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  plan         Plan          @relation(fields: [planId], references: [id])
+  orders       Order[]
+  entitlements Entitlement[]
+
+  @@index([userId])
+}
+
+// The access ledger. "Does this user have access right now?" is answered here,
+// never by a flag on User.
+model Entitlement {
+  id     String          @id @default(cuid())
+  userId String
+  kind   EntitlementKind
+  value  Int? // remaining credits; null for unlimited / feature_flag
+  source String // "one_time:pack-10" | "subscription:pro-monthly" | "manual_grant"
+
+  sourceOrderId        String?
+  sourceSubscriptionId String?
+  sourcePaymentId      String?
+
+  grantedAt  DateTime  @default(now())
+  expiresAt  DateTime? // null = never expires
+  consumedAt DateTime? // set when credits exhausted / entitlement voided/refunded
+
+  createdAt DateTime @default(now())
+
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  subscription Subscription? @relation(fields: [sourceSubscriptionId], references: [id])
+  projects     Project[]
+
+  @@index([userId])
+  @@index([userId, kind])
+  @@index([sourcePaymentId])
+}
+
+// Unified order row for BOTH one-time charges and each subscription cycle.
+model Order {
+  id             String      @id @default(cuid())
+  userId         String
+  kind           OrderKind
+  planId         String
+  subscriptionId String? // internal FK (set for subscription_cycle orders)
+  amountPaise    Int
+  currency       String      @default("INR")
+  status         OrderStatus @default(created)
+
+  razorpayOrderId        String? @unique
+  razorpaySubscriptionId String?
+  razorpayPaymentId      String?
+
+  notes Json? // { product: "riopoly", sku, ... }
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  plan         Plan          @relation(fields: [planId], references: [id])
+  subscription Subscription? @relation(fields: [subscriptionId], references: [id])
+  payment      Payment?
+  invoice      Invoice?
+
+  @@index([userId])
+  @@index([subscriptionId])
+}
+
+model Payment {
+  id                String        @id @default(cuid())
+  orderId           String        @unique
+  razorpayPaymentId String        @unique
+  amountPaise       Int
+  currency          String        @default("INR")
+  method            String?
+  status            PaymentStatus @default(created)
+  capturedAt        DateTime?
+  refundedAt        DateTime?
+  refundedPaise     Int           @default(0)
+  raw               Json?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+}
+
+model Invoice {
+  id            String @id @default(cuid())
+  orderId       String @unique
+  userId        String
+  invoiceNumber String @unique // GTA-RIO-YYYY-NNNNN
+  fiscalYear    Int
+  seq           Int
+
+  // amounts in paise (Int)
+  taxablePaise Int
+  cgstPaise    Int          @default(0)
+  sgstPaise    Int          @default(0)
+  igstPaise    Int          @default(0)
+  totalPaise   Int
+  gstTreatment GstTreatment
+
+  placeOfSupplyState String?
+  customerGstin      String?
+  currency           String  @default("INR")
+  pdfUrl             String?
+
+  issuedAt  DateTime @default(now())
+  createdAt DateTime @default(now())
+
+  order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  user  User  @relation(fields: [userId], references: [id])
+
+  @@unique([fiscalYear, seq]) // sequential numbering guard within a fiscal year
+  @@index([userId])
+}
+
+// Idempotency ledger for the single webhook handler.
+model WebhookEvent {
+  id              String        @id @default(cuid())
+  razorpayEventId String        @unique // x-razorpay-event-id
+  eventType       String
+  payload         Json
+  status          WebhookStatus @default(received)
+  error           String?
+  processedAt     DateTime?
+
+  createdAt DateTime @default(now())
+
+  @@index([eventType])
+}
+
+// ---------------------------------------------------------------------------
+// NextAuth (Auth.js) adapter models — email magic-link auth
+// ---------------------------------------------------------------------------
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
