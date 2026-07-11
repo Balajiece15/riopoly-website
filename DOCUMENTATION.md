@@ -25,6 +25,13 @@
 15. [Key decisions & gotchas](#15-key-decisions--gotchas)
 16. [Go‑live checklist & known TODOs](#16-go-live-checklist--known-todos)
 17. [Company / legal facts](#17-company--legal-facts)
+18. [Change log & session history](#18-change-log--session-history)
+
+---
+
+> **Documentation set:** `AGENTS.md` (auto-loaded orientation + golden rules) ·
+> **this file** (full reference) · `SECURITY.md` (security posture & runbook) ·
+> `.cursor/rules/riopoly.mdc` (always-applied context rule). Keep them current.
 
 ---
 
@@ -570,4 +577,52 @@ checkout `401` as the expected auth gate. Last full run: **0 bugs / 0 UX issues*
 - **WhatsApp / phone:** +91 99444 80052
 - **Marketing HQ:** Bangalore, Karnataka · **Registered office (invoices):** Tamil Nadu
 - **Invoice series:** `GTA-RIO-YYYY-NNNNN`
-```
+
+---
+
+## 18. Change log & session history
+
+Newest first. Captures *what changed and why* so decision context survives across chats.
+
+### Jul 2026 — Security hardening
+- **RLS enabled on all public tables** after a Supabase alert (public PostgREST API
+  was exposing `User`/`Session`/`Order`/`Invoice`). App is unaffected (Prisma =
+  owner role, Storage = service key — both bypass RLS). Verified anon REST → 0 rows.
+- **Automated it:** added `lib/security.ts` + `/api/cron/security-check` (daily,
+  self-heals RLS on any new table) + manual `scripts/enable-rls.ts`.
+- **`CRON_SECRET` set** in Vercel; both `/api/cron/*` endpoints now reject
+  unauthenticated calls.
+- **Rotated the Supabase service-role key:** migrated to the new `sb_secret` key
+  (`riopoly_server`), verified Storage works, then **disabled the legacy JWT
+  `anon`/`service_role` keys**. Confirmed the old (chat-exposed) key returns 401.
+- Authored **`AGENTS.md`**, **`SECURITY.md`**, and `.cursor/rules/riopoly.mdc` so
+  future Cursor sessions auto-load full context.
+
+### Jul 2026 — Repo sync + documentation
+- Committed the entire (previously CLI-only-deployed) app to git and pushed to
+  `main`; added `DOCUMENTATION.md` as the authoritative reference.
+
+### Jul 2026 — Live persona UX audit
+- Ran a headed Playwright walkthrough as 5 non-technical personas. Fixed: dead
+  footer legal links → `/terms` + new `/privacy`; missing favicon; added a shared
+  app header (logo/nav) to app pages; "Back to billing" → "Back to home"; fixed an
+  RSC-prefetch 404 regression. Ended at 0 bugs / 0 UX issues; 21 E2E tests green.
+
+### Jun–Jul 2026 — Unification + go-live prep
+- Unified the static marketing site + Vite 3D studio + Next billing app into ONE
+  Next.js deployment under `riopoly.gotoanalyze.com` (public/ + rewrites); retired
+  the idea of a separate `billing.gotoanalyze.com`.
+- Resolved Razorpay **fee-bearer = customer** blocking subscriptions (switched to
+  business-bears-fee via RM). Added Supabase **connection pooler** URLs for Vercel.
+  Added the daily keep-alive cron for the free-tier auto-pause.
+
+### Jun 2026 — Billing/payments build (Phases 1–6)
+- Built the full billing backend per the owner's brief: Prisma schema (9 domain
+  tables), `lib/plans.ts` catalog, Razorpay checkout (one-time + subscription),
+  signed idempotent webhook, entitlement ledger, GST-inclusive invoicing (PDF +
+  Supabase Storage + Resend email), and the billing UI. NextAuth email magic-link.
+
+### (earlier) — Marketing site + 3D studio
+- Rebranded from "Miracle Paints" to **RioPoly**; built the marketing site, wired
+  Formspree (`xkoadaqy`), SEO/OG tags, and integrated the 3D Color Studio.
+

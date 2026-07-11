@@ -1,0 +1,27 @@
+---
+description: RioPoly project context — read the docs before non-trivial work
+alwaysApply: true
+---
+
+# RioPoly — always read the docs first
+
+This repo is **RioPoly**: a unified Next.js 14 app (marketing site + 3D studio +
+Razorpay billing/auth) live at `https://riopoly.gotoanalyze.com`.
+
+**Before non-trivial work, read (in order):** `AGENTS.md` → `DOCUMENTATION.md`
+(full reference) → `SECURITY.md` (security). Keep all three current when you change
+the system — the owner relies on Cursor end-to-end and must not lose context.
+
+## Hard rules
+- **Never commit secrets.** Only `.env.example` (placeholders) is tracked; `.env*` are git-ignored.
+- **The Razorpay webhook (`/api/webhook/razorpay`) is the only source of truth for fulfillment** — never grant access from the client checkout callback.
+- **RLS must stay ON for every `public` table.** After adding a table, run `npx tsx scripts/enable-rls.ts` (a daily cron also self-heals).
+- **`lib/plans.ts` is the only source of truth for SKUs/prices** (GST-inclusive, integer paise). Run `npm run sync:plans` after changing subscription SKUs.
+- **Server secrets never go into `'use client'` modules** (`RAZORPAY_KEY_SECRET`, `RAZORPAY_WEBHOOK_SECRET`, `SUPABASE_SERVICE_ROLE_KEY`).
+- **Link to `/` and `/color-studio` with plain `<a>`**, not Next `<Link>` (they're static rewrites → `<Link>` prefetch 404s).
+- **Only commit/push when the user asks.** Deploy via `vercel --prod --yes`.
+- Razorpay is on **TEST keys**; going live is a deliberate step (`DOCUMENTATION.md` §16).
+
+## Reflexes
+- DB error `FATAL: (ENOTFOUND) tenant/user … not found` → Supabase project is **paused**; restore it in the dashboard.
+- Health check: `npm run check:billing`. Deploy: `vercel --prod --yes`. E2E: `E2E_BASE_URL="https://riopoly.gotoanalyze.com" npm run test:e2e`.
