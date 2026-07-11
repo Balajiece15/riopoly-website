@@ -421,7 +421,9 @@ Push local `.env` → Vercel prod with `scripts/push-vercel-env.sh` (overrides
   (idempotent). ⚠️ **Re-run this after any migration that ADDS a new table**, or
   it will be publicly exposed. The **anon key is safe to be public only while RLS
   is on**; the **service-role key must stay server-only** (rotate it in the
-  dashboard if you suspect it leaked).
+  dashboard if you suspect it leaked). **Automated:** `/api/cron/security-check`
+  re-enforces RLS **daily** (self-healing), so a new table can't stay exposed.
+  Full security posture, secret rotation, and audit steps live in **`SECURITY.md`**.
 
 ### 12.2 Razorpay
 - **Shared MID** (`GTANALYZE SOLUTIONS PRIVATE LIMITED`, MID `SDA0zy6VzG82LI`) with
@@ -447,7 +449,8 @@ Domain `gotoanalyze.com` is verified (shared from a sibling project). Sends magi
 ### 12.4 Vercel (hosting) & DNS
 - Project `riopoly-billing`; domain `riopoly.gotoanalyze.com` assigned to it.
 - Deploy: `vercel --prod --yes`. Build = `prisma generate && next build`.
-- Cron (Hobby): daily keep‑alive defined in `vercel.json`.
+- Cron (`vercel.json`): `/api/cron/keepalive` (daily, anti-pause) and
+  `/api/cron/security-check` (daily, self-heals RLS — see `SECURITY.md`).
 
 ### 12.5 Formspree
 Contact form posts to `https://formspree.io/f/xkoadaqy` (account `request@gotoanalyze.com`).

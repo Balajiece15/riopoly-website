@@ -1,32 +1,30 @@
 /*
- * Enable Row-Level Security on every table in the `public` schema.
+ * Enable Row-Level Security on every table in the `public` schema (manual run).
  *
- * Why: Supabase exposes a PostgREST API over `public`, gated by RLS + the anon
- * key. Our app NEVER uses that API — it uses Prisma over the direct Postgres
- * connection (table-owner `postgres` role) and Storage via the service-role key,
- * both of which BYPASS RLS. So enabling RLS with NO permissive policies denies
- * all anon/authenticated (PostgREST) access while the app keeps full access.
+ * The same logic runs automatically every day via the /api/cron/security-check
+ * endpoint (see vercel.json). Use this script for an immediate, on-demand pass —
+ * e.g. right after a migration that adds a new table, so you don't wait for the
+ * daily cron. Idempotent and safe to re-run.
  *
- * Idempotent and safe to re-run.  Run:  npx tsx scripts/enable-rls.ts
+ * Run:  npx tsx scripts/enable-rls.ts
  */
 import 'dotenv/config';
 import { prisma } from '../lib/prisma';
+import { enforceRlsOnPublicTables } from '../lib/security';
 
 async function main() {
   const before = await prisma.user.count();
-  console.log(`DB reachable. Users before: ${before}\n`);
+  console.log(`DB reachable. Users: ${before}\n`);
 
-  const tables = await prisma.$queryRaw<{ tablename: string }[]>`
-    SELECT tablename FROM pg_tables WHERE schemaname = 'public' ORDER BY tablename;
-  `;
-  console.log(`Public tables (${tables.length}): ${tables.map((t) => t.tablename).join(', ')}\n`);
-
-  for (const { tablename } of tables) {
-    const ident = `"${tablename.replace(/"/g, '""')}"`;
-    await prisma.$executeRawUnsafe(`ALTER TABLE public.${ident} ENABLE ROW LEVEL SECURITY;`);
-    console.log(`  RLS enabled → ${tablename}`);
+  const { tables, fixed } = await enforceRlsOnPublicTables();
+  console.log(`Public tables (${tables.length}): ${tables.join(', ')}\n`);
+  if (fixed.length) {
+    for (const t of fixed) console.log(`  RLS enabled → ${t}`);
+  } else {
+    console.log('  All tables already had RLS enabled (nothing to fix).');
   }
 
+  // Verify + confirm the app still reads (Prisma bypasses RLS as owner).
   const status = await prisma.$queryRaw<{ relname: string; relrowsecurity: boolean }[]>`
     SELECT c.relname, c.relrowsecurity
     FROM pg_class c
@@ -36,16 +34,16 @@ async function main() {
   `;
   console.log('\nVerification:');
   for (const s of status) console.log(`  ${s.relrowsecurity ? '✅' : '❌'} ${s.relname}`);
-  const missing = status.filter((s) => !s.relrowsecurity);
+  const stillOff = status.filter((s) => !s.relrowsecurity);
 
   const after = await prisma.user.count();
-  console.log(`\nApp still reads DB via Prisma (owner bypasses RLS). Users after: ${after}`);
+  console.log(`\nApp still reads DB via Prisma. Users: ${after}`);
 
-  if (missing.length) {
-    console.error(`\n❌ RLS still OFF on: ${missing.map((s) => s.relname).join(', ')}`);
+  if (stillOff.length) {
+    console.error(`\n❌ RLS still OFF on: ${stillOff.map((s) => s.relname).join(', ')}`);
     process.exit(1);
   }
-  console.log('\n✅ All public tables have RLS enabled. Anon/PostgREST access is denied by default.');
+  console.log('\n✅ All public tables have RLS enabled. Anon/PostgREST access is denied.');
 }
 
 main()
