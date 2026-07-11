@@ -412,6 +412,16 @@ Push local `.env` → Vercel prod with `scripts/push-vercel-env.sh` (overrides
   only when taking real payments (for automatic backups of invoice/tax data).
 - **Storage:** private bucket `invoices`. Create it with `npm run setup:storage`
   (`scripts/setup-storage.ts` → `ensureInvoiceBucket`).
+- **Row-Level Security (RLS) — REQUIRED.** Supabase exposes a public PostgREST API
+  over the `public` schema, gated only by RLS + the anon key. Our app never uses
+  that API (Prisma connects as the table-owner `postgres` role; Storage uses the
+  service-role key — **both bypass RLS**). So **RLS is enabled on every public
+  table with no permissive policies** → the anon/REST path is denied while the app
+  works unchanged. Apply/verify with **`npx tsx scripts/enable-rls.ts`**
+  (idempotent). ⚠️ **Re-run this after any migration that ADDS a new table**, or
+  it will be publicly exposed. The **anon key is safe to be public only while RLS
+  is on**; the **service-role key must stay server-only** (rotate it in the
+  dashboard if you suspect it leaked).
 
 ### 12.2 Razorpay
 - **Shared MID** (`GTANALYZE SOLUTIONS PRIVATE LIMITED`, MID `SDA0zy6VzG82LI`) with
@@ -462,6 +472,7 @@ npm run prisma:studio           # DB GUI
 # Plans & storage (one-time / on catalog change)
 npm run sync:plans              # lib/plans.ts -> Razorpay Plans + Plan table
 npm run setup:storage           # create the private 'invoices' bucket
+npx tsx scripts/enable-rls.ts   # enable RLS on all public tables (re-run after adding tables)
 
 # Diagnostics
 npm run check:billing           # inspect latest user's billing/entitlements (also a DB health check)
@@ -520,6 +531,10 @@ checkout `401` as the expected auth gate. Last full run: **0 bugs / 0 UX issues*
   prefetch to `/` and `/color-studio` caused `_rsc` 404s.
 - **PDF uses `Rs.`** not `₹` (font glyph limitation).
 - **Supabase free tier pauses**; keep‑alive cron mitigates.
+- **RLS must be ON for every public table** (Supabase PostgREST is public). App
+  bypasses RLS via the owner/service roles, so RLS-with-no-policy is the fix.
+  Re-run `scripts/enable-rls.ts` after adding tables. (Fixes the "table publicly
+  accessible / sensitive data exposed" Supabase security alerts.)
 - **No favicon.ico file** — SVG favicon is declared in marketing HTML and app
   metadata (`app/layout.tsx` `icons`).
 - **Marketing HQ = Bangalore** (operational office) vs **registered office = Tamil
