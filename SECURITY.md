@@ -95,19 +95,22 @@ data), so it is safe even if triggered manually.
 
 | Secret | Exposure risk | How to rotate |
 |---|---|---|
-| `SUPABASE_SERVICE_ROLE_KEY` | **High** (full DB, bypasses RLS) | Supabase → Settings → API → roll `service_role` → update `.env` + Vercel |
+| `SUPABASE_SERVICE_ROLE_KEY` (now a `sb_secret_…` key) | **High** (full DB, bypasses RLS) | Supabase → Settings → API Keys → Secret keys → create a new secret key → update `.env` + Vercel → redeploy → delete the old secret key |
 | `RAZORPAY_KEY_SECRET` | High (create charges/refunds) | Razorpay → API Keys → regenerate → update env; re-verify webhook |
 | `RAZORPAY_WEBHOOK_SECRET` | Medium (forge webhooks) | Razorpay → Webhooks → edit secret → update `RAZORPAY_WEBHOOK_SECRET` |
 | `NEXTAUTH_SECRET` | High (forge sessions) | `openssl rand -base64 32` → update env (invalidates existing sessions) |
 | `RESEND_API_KEY` | Medium (send email as us) | Resend dashboard → roll key → update env |
-| `SUPABASE_ANON_KEY` | **Low while RLS is on** (publishable) | Roll only if abused; safe to be public with RLS |
+| `SUPABASE_ANON_KEY` (now a `sb_publishable_…` key) | **Low while RLS is on** (publishable) | Roll only if abused; safe to be public with RLS |
 | `CRON_SECRET` | Low | `openssl rand -hex 32` → update env |
 
 Push updated env to prod: `bash scripts/push-vercel-env.sh` (or set in Vercel UI),
 then redeploy.
 
-> **Action item:** the `SUPABASE_SERVICE_ROLE_KEY` was pasted into a chat earlier.
-> It is server-only and RLS-independent, so rotating it is recommended hygiene.
+> ✅ **Done (Jul 2026):** migrated to the new Supabase API keys — the app uses the
+> `riopoly_server` **secret key** (`sb_secret_…`); the previously-exposed **legacy
+> JWT `anon`/`service_role` keys were disabled**. Verified the old `service_role`
+> key now returns HTTP 401 (dead). `CRON_SECRET` is set in Vercel and both
+> `/api/cron/*` endpoints reject unauthenticated calls.
 
 ---
 
@@ -127,8 +130,8 @@ then redeploy.
 
 ## 6. Recommended hardening / backlog
 
-- [ ] **Rotate the Supabase service-role key** (was exposed in chat) — §4.
-- [ ] **Set `CRON_SECRET`** in Vercel to lock the cron endpoints.
+- [x] **Rotate the Supabase service-role key** — migrated to `sb_secret_…`, legacy JWT keys disabled (Jul 2026).
+- [x] **Set `CRON_SECRET`** in Vercel to lock the cron endpoints (Jul 2026).
 - [ ] **Supabase Pro** once real payments flow → automatic daily backups of
       financial/tax records.
 - [ ] Optional: **disable the Supabase Data API** (PostgREST) entirely — we never
