@@ -18,6 +18,7 @@ Operator: **GTANALYZE SOLUTIONS PRIVATE LIMITED** (GSTIN `33AALCG6598F1Z7`, Tami
 | **`AGENTS.md`** (this) | Orientation + golden rules + quick commands |
 | **`DOCUMENTATION.md`** | Full end-to-end reference: product, architecture, data model, billing engine, GST, env vars, services, runbook, testing, change log |
 | **`SECURITY.md`** | Data classification, controls, automated defenses, secret rotation, incident runbook, audit steps |
+| **`RETROSPECTIVE.md`** | Honest catalog of past agent mistakes/hallucinations + the best practices they established. Read before repeating past patterns. |
 
 The older root `*.md` files (`PROJECT_SUMMARY.md`, `HERO_*`, `TRUST_*`,
 `VALIDATION_REPORT.md`, `TEST_INSTRUCTIONS.md`) are **legacy scratch notes** — ignore

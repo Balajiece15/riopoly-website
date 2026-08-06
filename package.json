@@ -14,7 +14,11 @@
     "sync:plans": "tsx scripts/sync-plans.ts",
     "setup:storage": "tsx scripts/setup-storage.ts",
     "check:billing": "tsx scripts/check-billing.ts",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "probe:edge": "tsx scripts/edge-probe.ts",
+    "probe:forms": "tsx scripts/form-probe.ts",
+    "probe:personas": "tsx scripts/persona-walkthrough.ts",
+    "enable:rls": "tsx scripts/enable-rls.ts"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.7.0",

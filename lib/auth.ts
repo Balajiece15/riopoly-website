@@ -3,6 +3,7 @@ import { PrismaAdapter } from '@auth/prisma-adapter';
 import EmailProvider from 'next-auth/providers/email';
 import { Resend } from 'resend';
 import { prisma } from './prisma';
+import { isValidEmail } from './validation';
 
 const EMAIL_FROM = process.env.EMAIL_FROM ?? 'RioPoly <onboarding@resend.dev>';
 
@@ -17,6 +18,13 @@ export const authOptions: NextAuthOptions = {
     EmailProvider({
       from: EMAIL_FROM,
       maxAge: 15 * 60, // magic link valid 15 minutes
+      // Defense-in-depth: reject malformed addresses even if the client is
+      // bypassed, so we never attempt to send a magic link to a dead address.
+      normalizeIdentifier(identifier: string): string {
+        const email = identifier.trim().toLowerCase();
+        if (!isValidEmail(email)) throw new Error('Invalid email address');
+        return email;
+      },
       async sendVerificationRequest({ identifier, url }) {
         // In dev without a verified Resend domain, fall back to console.
         if (process.env.NODE_ENV !== 'production' && !process.env.RESEND_API_KEY) {

@@ -584,6 +584,23 @@ checkout `401` as the expected auth gate. Last full run: **0 bugs / 0 UX issues*
 
 Newest first. Captures *what changed and why* so decision context survives across chats.
 
+### Aug 2026 — End-to-end hardening pass + retrospective
+- Full app re-audit via personas + adversarial probes. Added durable harnesses:
+  `scripts/edge-probe.ts` (61 dirty-data/IDOR/auth checks — all pass) and
+  `scripts/form-probe.ts` (login/contact dirty data).
+- **Fixed:** login email validation was too loose (native `type=email` accepted
+  `a@b`, unbounded length, and `<script>…@x.com`) → added `lib/validation.ts`
+  (strict, RFC-ish) used by both the login UI and a NextAuth `normalizeIdentifier`
+  server guard. Made the "fails gracefully" E2E test assert the contract (any clean
+  JSON 502/409) instead of one message. Disabled unused `SessionProvider` polling
+  to stop a benign `CLIENT_FETCH_ERROR`.
+- **Confirmed solid:** API dirty-data 61/61, forms XSS-inert, data integrity clean,
+  invoice IDOR blocked, 19/19 applicable E2E green.
+- **Known env blocker:** Razorpay TEST keys are invalid (`401 Authentication
+  failed`) — checkout is down until the owner regenerates keys. Code handles it
+  gracefully; key-dependent tests skip with a clear reason. See `RETROSPECTIVE.md` §5.
+- Authored **`RETROSPECTIVE.md`** (agent mistakes + learnings + best practices).
+
 ### Jul 2026 — Security hardening
 - **RLS enabled on all public tables** after a Supabase alert (public PostgREST API
   was exposing `User`/`Session`/`Order`/`Invoice`). App is unaffected (Prisma =

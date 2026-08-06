@@ -3,6 +3,7 @@
 import { Suspense, useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { useSearchParams } from 'next/navigation';
+import { isValidEmail } from '@/lib/validation';
 
 const ERROR_MESSAGES: Record<string, string> = {
   EmailSignin: "We couldn't send the sign-in email. Please try again in a moment, or contact support@gotoanalyze.com if it persists.",
@@ -10,6 +11,7 @@ const ERROR_MESSAGES: Record<string, string> = {
   Configuration: 'Sign-in is temporarily unavailable. Please try again shortly.',
   Default: 'Something went wrong while signing in. Please try again.',
 };
+
 
 function LoginInner() {
   const params = useSearchParams();
@@ -19,25 +21,40 @@ function LoginInner() {
   const errorMessage = errorCode ? ERROR_MESSAGES[errorCode] ?? ERROR_MESSAGES.Default : null;
   const [email, setEmail] = useState('');
   const [submitting, setSubmitting] = useState(false);
+  const [inlineError, setInlineError] = useState<string | null>(null);
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
+    const trimmed = email.trim();
+    if (!isValidEmail(trimmed)) {
+      setInlineError('Please enter a valid email address (e.g. you@company.com).');
+      return;
+    }
+    setInlineError(null);
     setSubmitting(true);
     // Stay on this page on failure so we can show the error inline.
-    await signIn('email', { email, callbackUrl: next, redirect: false }).then((res) => {
-      if (res?.error) {
-        window.location.href = `/login?error=${encodeURIComponent(res.error)}&next=${encodeURIComponent(next)}`;
-        return;
-      }
-      window.location.href = '/login?check=email';
-    });
+    await signIn('email', { email: trimmed, callbackUrl: next, redirect: false })
+      .then((res) => {
+        if (res?.error) {
+          window.location.href = `/login?error=${encodeURIComponent(res.error)}&next=${encodeURIComponent(next)}`;
+          return;
+        }
+        window.location.href = '/login?check=email';
+      })
+      .catch(() => {
+        setSubmitting(false);
+        setInlineError('Network error — please check your connection and try again.');
+      });
   }
+
+  const shownError = inlineError ?? errorMessage;
 
   return (
     <main style={{ maxWidth: 420, margin: '96px auto', padding: '0 24px' }}>
       <h1 style={{ fontSize: 26, fontWeight: 800 }}>Sign in to RioPoly</h1>
-      {errorMessage && (
+      {shownError && (
         <p
+          role="alert"
           style={{
             marginTop: 12,
             padding: '10px 14px',
@@ -48,7 +65,7 @@ function LoginInner() {
             fontSize: 14,
           }}
         >
-          {errorMessage}
+          {shownError}
         </p>
       )}
       {checkEmail ? (
@@ -60,9 +77,14 @@ function LoginInner() {
           <input
             type="email"
             required
+            maxLength={254}
+            autoComplete="email"
             placeholder="you@company.com"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              if (inlineError) setInlineError(null);
+            }}
             style={{
               width: '100%',
               padding: '12px 14px',
