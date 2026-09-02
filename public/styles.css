@@ -465,3 +465,27 @@ select.form-input option {
 /* ─── Glow effects ───────────────────────── */
 .glow-blue  { box-shadow: 0 0 20px rgba(59,130,246,0.4), 0 0 40px rgba(59,130,246,0.2); }
 .glow-purple{ box-shadow: 0 0 20px rgba(139,92,246,0.4), 0 0 40px rgba(139,92,246,0.2); }
+
+/* ─── Accessible tap targets ─────────────────────────────────────
+   Mobile menu button and nav/footer/CTA links need >= 40px hit area.
+   (Inline links inside body sentences are intentionally exempt — WCAG 2.5.8.) */
+#mobile-menu-button {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (hover: none), (pointer: coarse) {
+  .nav-link,
+  .mobile-nav-link,
+  .footer-link,
+  .learn-more-link,
+  .audience-tab,
+  footer a {
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

@@ -14,12 +14,12 @@ const li: CSSProperties = { color: '#cbd5e1', fontSize: 15, marginBottom: 8 };
 export default function PrivacyPage() {
   return (
     <main style={wrap}>
-      <a href="/" style={{ color: '#94a3b8', fontSize: 14, textDecoration: 'none' }}>
+      <a href="/" style={{ display: 'inline-flex', alignItems: 'center', minHeight: 40, color: '#94a3b8', fontSize: 14, textDecoration: 'none' }}>
         ← Back to home
       </a>
 
       <h1 style={{ fontSize: 30, fontWeight: 800, margin: '14px 0 4px' }}>Privacy Policy</h1>
-      <p style={{ color: '#64748b', fontSize: 13, margin: '0 0 8px' }}>Last updated: {LAST_UPDATED}</p>
+      <p style={{ color: '#9fb0c9', fontSize: 13, margin: '0 0 8px' }}>Last updated: {LAST_UPDATED}</p>
 
       <p style={p}>
         This policy explains how <strong>GTANALYZE SOLUTIONS PRIVATE LIMITED</strong> (GSTIN{' '}
@@ -90,7 +90,7 @@ export default function PrivacyPage() {
         .
       </p>
 
-      <p style={{ ...p, color: '#64748b', fontSize: 13, marginTop: 28 }}>
+      <p style={{ ...p, color: '#9fb0c9', fontSize: 13, marginTop: 28 }}>
         GTANALYZE SOLUTIONS PRIVATE LIMITED · GSTIN 33AALCG6598F1Z7 · Tamil Nadu, India.
       </p>
     </main>

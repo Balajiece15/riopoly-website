@@ -25,9 +25,10 @@ const cta: CSSProperties = {
   alignItems: 'center',
   justifyContent: 'center',
   borderRadius: 10,
-  background: '#6366f1',
+  background: '#4f46e5',
   color: '#fff',
-  padding: '10px 18px',
+  padding: '11px 18px',
+  minHeight: 44,
   fontWeight: 600,
   fontSize: 14,
   textDecoration: 'none',
@@ -86,7 +87,7 @@ export default async function BillingPage({
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
             <span
               style={{
-                background: '#6366f1',
+                background: '#4f46e5',
                 color: '#fff',
                 padding: '4px 12px',
                 borderRadius: 999,
@@ -214,7 +215,7 @@ export default async function BillingPage({
                           </span>
                         )
                       ) : (
-                        <span style={{ color: '#64748b' }}>—</span>
+                        <span style={{ color: '#9fb0c9' }}>—</span>
                       )}
                     </td>
                   </tr>
@@ -234,7 +235,7 @@ export default async function BillingPage({
         </Link>
       </div>
 
-      <p style={{ color: '#64748b', fontSize: 12, marginTop: 28 }}>
+      <p style={{ color: '#9fb0c9', fontSize: 12, marginTop: 28 }}>
         No refunds. Cancel anytime; access continues until the end of your billing period. See our{' '}
         <Link href="/terms" style={{ color: '#818cf8' }}>
           Terms &amp; Refund Policy

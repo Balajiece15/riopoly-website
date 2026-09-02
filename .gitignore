@@ -22,3 +22,7 @@ dist/
 /blob-report/
 /tests/.auth/
 /walkthrough/
+
+# Responsive audit artifacts (keep the .md report, ignore screenshots)
+audit/**/*.png
+audit/**/report.json

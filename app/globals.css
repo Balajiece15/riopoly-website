@@ -1,0 +1,79 @@
+/* Global resets + responsive guards for the Next app pages
+   (marketing site and 3D studio are separate static docs with their own CSS). */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+html, body {
+  max-width: 100%;
+  /* Guard against any stray horizontal overflow (requirement #1). */
+  overflow-x: clip;
+}
+
+body { margin: 0; }
+
+/* Real inputs >= 16px on mobile prevents iOS auto-zoom (requirement #9). */
+input, select, textarea, button { font-size: 16px; }
+
+/* ── Shared app header (device-adaptive) ─────────────────────────── */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px max(16px, env(safe-area-inset-left)) 12px max(16px, env(safe-area-inset-right));
+  /* Opaque so contrast is deterministic (a translucent header made axe
+     measure link contrast against scrolled-under content). */
+  background: #0b1220;
+  border-bottom: 1px solid #1e2a4a;
+}
+.site-header .brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #fff;
+  min-height: 40px;
+  flex-shrink: 0;
+}
+.site-header .brand-text { font-weight: 800; font-size: 17px; letter-spacing: 0.2px; }
+.site-header nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  /* Toolbars/nav become a hidden-scrollbar strip if space is tight (req #6). */
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.site-header nav::-webkit-scrollbar { display: none; }
+.site-header nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;              /* tap target (req: >= 40px) */
+  padding: 0 8px;
+  color: #e2e8f0;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  border-radius: 8px;
+}
+.site-header nav a:hover { color: #fff; background: rgba(255,255,255,0.05); }
+
+@media (max-width: 480px) {
+  .site-header { padding-top: 10px; padding-bottom: 10px; gap: 8px; }
+  .site-header .brand-text { font-size: 16px; }
+  .site-header nav { gap: 2px; }
+  .site-header nav a { font-size: 13px; padding: 0 7px; }
+}
+
+/* Center capped content and respect side safe-areas on every app page. */
+.app-main {
+  padding-left: max(0px, env(safe-area-inset-left));
+  padding-right: max(0px, env(safe-area-inset-right));
+}

@@ -1,0 +1,37 @@
+---
+description: Responsive & accessibility conventions for RioPoly UI (app pages, marketing, 3D studio)
+alwaysApply: true
+---
+
+# Responsive & a11y rules (validated Sep 2026)
+
+RioPoly spans three UIs, each with its own CSS system — match the one you're editing:
+- **App pages** (`app/**/*.tsx`): inline styles + `app/globals.css`. Global resets live in `globals.css`.
+- **Marketing** (`public/index.html`, `public/styles.css`): Tailwind CDN + `styles.css`.
+- **3D studio** (separate Vite app at `../3D Model House Painting`; built into `public/color-studio/`): inline styles + injected `<style>` in `src/main.tsx`; deploy = build studio → copy `dist/*` → `public/color-studio/`.
+
+## Always
+- **`box-sizing: border-box` globally** and **`overflow-x: clip` on `html,body`** (already in `globals.css` / studio `main.tsx`). A content-box `width:100%` input caused a 6px overflow — this guards it.
+- **Inputs ≥ 16px on mobile** (`input,select,textarea{font-size:16px}` app-wide; `@media(max-width:768px)` in studio) to stop iOS auto-zoom.
+- **Viewport with `viewport-fit=cover`** (`export const viewport` in `app/layout.tsx`) + `env(safe-area-inset-*)` padding on fixed chrome.
+- **Center capped content** with `margin:0 auto`; never leave it left-hugging on ultrawide. Keep full-bleed views (the 3D canvas) full width.
+- **Grids need a mobile base** before breakpoints; prefer `repeat(auto-fit,minmax(240px,1fr))`. Wrap tables in `overflow-x:auto`.
+
+## Contrast (WCAG AA, verified with axe-core)
+- On the dark bg, **`#64748b` fails** — use `#9fb0c9`+ for muted text. `#94a3b8` passes.
+- **White on `#6366f1` = 4.46:1 (fails)** — use `#4f46e5` for primary buttons/badges with white text.
+- Make sticky/overlay headers **opaque** (not `rgba(...,0.9)`) so axe can compute contrast deterministically.
+
+## Tap targets
+- Standalone controls (buttons, CTAs, nav links, hamburger, "back" links) **≥ 40px** (icon buttons 44). Inline links *inside sentences* are exempt (WCAG 2.5.8) — don't force them.
+
+## 3D studio on touch
+- The 360px side panel must NOT cover a phone. Use `useIsMobile()` → canvas full-width (`right:0`), panel becomes a slide-in **drawer** with a Controls toggle + ✕ close (see `App.tsx`).
+- **Hide desktop-only hints on touch** (`useIsTouch()`): show Tap/Drag/Pinch, not Click/Scroll/WASD.
+- R3F `<Canvas>` auto-resizes via ResizeObserver — just make its container full-width; don't leave it 0/late-sized.
+- Floor inline text to 11px; the minimap floor-plan *schematic* labels (~8px) are a documented exception.
+
+## Validation (don't claim "looks good" without proof)
+- Run `scripts/responsive-audit.ts` (5 viewports × routes; measures overflow, axe contrast, text<11px, tap<40px; full-page screenshots; interactive states incl. studio drawer). **Open the screenshots**, not just metrics.
+- axe-core (`@axe-core/playwright`) requires `browser.newContext()` (not a bare `newPage`).
+- Local `next dev`/`next build` can hang under host memory pressure → validate against the deployed result (`vercel --prod` builds in the cloud).

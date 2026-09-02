@@ -42,7 +42,7 @@ function PlanCard({ plan }: { plan: PlanDef }) {
       <ul style={{ margin: 0, padding: 0, listStyle: 'none', display: 'grid', gap: 6, flex: 1 }}>
         {plan.features.map((f) => (
           <li key={f} style={{ fontSize: 14, color: '#cbd5e1' }}>
-            <span style={{ color: '#6366f1', marginRight: 8 }}>✓</span>
+            <span style={{ color: '#a5b4fc', marginRight: 8 }}>✓</span>
             {f}
           </li>
         ))}
@@ -68,7 +68,7 @@ export default function PricingPage() {
   return (
     <main style={{ maxWidth: 1040, margin: '0 auto', padding: '64px 24px 96px' }}>
       <div style={{ marginBottom: 8 }}>
-        <a href="/" style={{ color: '#94a3b8', fontSize: 14, textDecoration: 'none' }}>
+        <a href="/" style={{ display: 'inline-flex', alignItems: 'center', minHeight: 40, color: '#94a3b8', fontSize: 14, textDecoration: 'none' }}>
           ← Back to home
         </a>
       </div>
@@ -81,7 +81,7 @@ export default function PricingPage() {
         </Link>{' '}
         (cancel anytime; access continues until period end).
       </p>
-      <p style={{ color: '#64748b', margin: '0 0 36px', fontSize: 13 }}>
+      <p style={{ color: '#9fb0c9', margin: '0 0 36px', fontSize: 13 }}>
         You&apos;ll be asked to sign in with your email before payment.
       </p>
 
@@ -103,7 +103,7 @@ export default function PricingPage() {
         </div>
       </section>
 
-      <p style={{ color: '#64748b', fontSize: 12, marginTop: 40 }}>
+      <p style={{ color: '#9fb0c9', fontSize: 12, marginTop: 40 }}>
         All payments are final and non-refundable. Subscriptions renew automatically until
         cancelled; cancel anytime and access continues until the end of the paid period. See our{' '}
         <Link href="/terms" style={{ color: '#818cf8' }}>
