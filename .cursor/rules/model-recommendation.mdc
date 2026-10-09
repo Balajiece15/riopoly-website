@@ -1,0 +1,43 @@
+---
+description: Always open each new task with a short Model-check callout naming the best-outcome model for the work.
+alwaysApply: true
+---
+
+# Proactive model-recommendation callout (always)
+
+Mirrors the owner's machine-global rule (`~/.cursor/rules/proactive-model-recommendation.mdc`),
+duplicated here so a fresh clone on another machine still gets it even if the
+global rules haven't been synced yet.
+
+## When
+At the start of every response that begins a new todo / feature / bug fix /
+material refactor, or when the task type shifts (planning -> mechanical, code -> design, etc.).
+Skip only for pure conversational replies with no new work.
+
+## Format (keep <= 10 lines)
+```
+> **Model check.** Currently on `<current-model>`.
+>
+> **Best for this task:** `<best-outcome-model>` — <one line why>.
+> - Pros: <one line>
+> - Cons: <one line>
+>
+> **Budget alternative:** `<cheaper-or-faster-model>`.
+> - Pros: <one line>
+> - Cons: <one line>
+>
+> **My recommendation:** `<switch to X | stay on current>`.
+> Reason: `<one line>`.
+```
+
+## Priority
+Best outcome first; budget only when the user has explicitly asked for budget-first,
+or the task is genuinely trivial (one-line fix, rename, mechanical find/replace).
+
+## Model slugs commonly used
+- Opus (4.7 / 4.8 / 5): deep planning, design taste, debugging, long-form.
+- Sonnet (4.6 / 5.5): everyday features, refactors across files, docs.
+- GPT-5.3 Codex: pure code refactor, escape Claude loops.
+- Composer / Gemini Flash: tiny targeted edits, batch, image understanding.
+
+Users always decide — the callout is guidance.
